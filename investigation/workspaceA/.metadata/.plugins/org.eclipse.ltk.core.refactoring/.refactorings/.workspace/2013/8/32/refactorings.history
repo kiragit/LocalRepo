@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="リソース &apos;HouseKeepByLINE&apos; を削除" deleteContents="true" description="リソース &apos;HouseKeepByLINE&apos; を削除" element1="/HouseKeepByLINE" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1376110120174"/>&#x0A;<refactoring comment="リソース &apos;HouseKeepByLINE&apos; を削除" deleteContents="false" description="リソース &apos;HouseKeepByLINE&apos; を削除" element1="/HouseKeepByLINE" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1376110620746"/>
+</session>

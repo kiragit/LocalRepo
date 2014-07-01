@@ -1,0 +1,103 @@
+package com.example.sakuban;
+
+import java.util.ArrayList;
+
+import com.example.sakuban.WorkLogDate;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DBAdapter {
+
+	private String TABLE_NAME = "WLOG";
+	private int TABLE_VERSION = 3;
+	private String DB_NAME = "mydb2";
+	private String COL_ID = "_id";
+	private String COL_YEAR = "year";
+	private String COL_MONTH = "month";
+	private String COL_DAY = "day";
+	private String COL_HOUR = "hour";
+	private String COL_MIN = "min";
+
+	protected final Context context;
+	protected DBOpenHelper dbHelper;
+	protected SQLiteDatabase db;
+
+	public DBAdapter(Context c) {
+		this.context = c;
+		dbHelper = new DBOpenHelper(this.context);
+	}
+
+	private class DBOpenHelper extends SQLiteOpenHelper {
+
+		public DBOpenHelper(Context context) {
+			super(context, DB_NAME, null, TABLE_VERSION);
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			db.execSQL("create table " + TABLE_NAME + " (" + COL_ID
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_YEAR
+					+ " TEXT NOT NULL," + COL_MONTH + " TEXT NOT NULL,"
+					+ COL_DAY + " TEXT NOT NULL," + COL_HOUR
+					+ " TEXT NOT NULL," + COL_MIN + " TEXT NOT NULL);");
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			if (oldVersion > newVersion) {
+				db.execSQL("drop table " + TABLE_NAME + ";");
+				onCreate(db);
+			}
+		}
+	}
+
+	public DBAdapter open() {
+		db = dbHelper.getWritableDatabase();
+		return this;
+	}
+
+	public void close() {
+		dbHelper.close();
+	}
+
+	public void saveNote(WorkLogDate wld) {
+		ContentValues values = new ContentValues();
+		values.put(COL_YEAR, String.valueOf(wld.getYear()));
+		values.put(COL_MONTH, String.valueOf(wld.getMonth()));
+		values.put(COL_DAY, String.valueOf(wld.getDay()));
+		values.put(COL_HOUR, String.valueOf(wld.getHour()));
+		values.put(COL_MIN, String.valueOf(wld.getMin()));
+		db.insertOrThrow(TABLE_NAME, null, values);
+	}
+
+	public ArrayList<WorkLogDate> selectAll(){
+
+		String sql = "select * from " + TABLE_NAME + " ;";
+		SQLiteCursor cursor = (SQLiteCursor)db.rawQuery(sql,null);
+		ArrayList<WorkLogDate> wlList = new ArrayList<WorkLogDate>();
+		WorkLogDate wld;
+		int rouCount = cursor.getCount();
+		cursor.moveToFirst();
+
+		for(int i=0; i<rouCount; i++){
+			wld = new WorkLogDate();
+
+			wld.setYear(cursor.getInt(1));
+			wld.setMonth(cursor.getInt(2));
+			wld.setDay(cursor.getInt(3));
+			wld.setHour(cursor.getInt(4));
+			wld.setMin(cursor.getInt(5));
+
+			wlList.add(wld);
+			cursor.moveToNext();
+		}
+		return wlList;
+	}
+
+}

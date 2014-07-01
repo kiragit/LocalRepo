@@ -1,0 +1,16 @@
+package com.gmail.sample.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import android.test.ActivityInstrumentationTestCase2;
+
+public class Test1 extends ActivityInstrumentationTestCase2<T> {
+
+	@Test
+	public void test() {
+		fail("‚Ü‚¾ŽÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+	}
+
+}

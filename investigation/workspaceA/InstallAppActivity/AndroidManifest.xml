@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.android_mvc.sample_project"
+      android:versionCode="1"
+      android:versionName="1.0">
+
+
+    <!-- SDKのバージョン -->
+    <uses-sdk android:minSdkVersion="10" />
+        <!--
+            Platform Version（OSのバージョン）とAPI Level（SDKのバージョン番号）の対応一覧表：
+            http://developer.android.com/intl/ja/guide/topics/manifest/uses-sdk-element.html#ApiLevels
+        -->
+
+
+    <!-- アプリの構成要素 -->
+    <application android:icon="@drawable/icon"
+                 android:label="@string/app_name"
+                 android:theme="@android:style/Theme.Light"
+    >
+
+
+        <!-- ============ 画面 ============= -->
+
+
+        <!-- アプリ初期化  -->
+        <activity android:name=".activities.installation.InstallAppActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- アプリ初期化完了  -->
+        <activity android:name=".activities.installation.InstallCompletedActivity">
+        </activity>
+
+        <!-- アプリ本体  -->
+        <activity android:name="com.android_mvc.sample_project.activities.func_html.MainActivity">
+        </activity>
+        <activity android:name="com.android_mvc.sample_project.activities.func_html.DoActivity">
+        </activity>
+        <activity android:name="com.android_mvc.sample_project.activities.func_html.PlanActivity">
+        </activity>
+        <activity android:name="com.android_mvc.sample_project.activities.func_html.PlanProjectActivity">
+        </activity>
+        <activity android:name="com.android_mvc.sample_project.activities.func_html.CheckActivity">
+        </activity>
+        <activity android:name="com.android_mvc.sample_project.activities.func_html.ActionActivity">
+        </activity>
+        <!-- ============ バッチ ============= -->
+
+
+        <!-- 端末起動時にバッチを呼ぶレシーバ -->
+        <!-- 2013/02/10 delete by kira for not using bat start 
+        <receiver android:name=".bat.OnBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        2013/02/10 delete by kira for not using bat end -->
+
+        <!-- ============ 外部ライブラリ ============= -->
+
+
+        <!-- GoogleMapsを使用 -->
+	<!-- 2013/02/09 delete by kira for dont using library start
+        <uses-library android:name="com.google.android.maps" />
+	2013/02/09 delete by kira for dont using library end -->
+
+
+    </application>
+
+
+
+    <!-- ============ パーミッション ============= -->
+
+
+    <!-- ネットワークアクセス -->
+    <!-- 2013/02/10 delete by kira for not using permission start
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    2013/02/10 delete by kira for not using permission end -->
+
+    <!-- アプリケーションがGPSへアクセスするのを許可 -->
+    <!-- 2013/02/09 delete by kira for dont useing permission
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    -->
+    <!-- アプリケーションがテスト用の位置情報にアクセスするのを許可 -->
+    <!-- 2013/02/09 delete by kira for dont useing permission
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    -->
+
+</manifest>

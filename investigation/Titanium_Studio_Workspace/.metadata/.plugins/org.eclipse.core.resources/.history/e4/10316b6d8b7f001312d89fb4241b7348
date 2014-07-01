@@ -1,0 +1,4 @@
+WebView webView=new WebView(app.this);
+setContentView(webView); 
+String url= "file://" + Environment.getExternalStorageDirectory().getAbsolutePath()+"index.html";
+webView.loadUrl(url);

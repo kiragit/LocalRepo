@@ -1,0 +1,11 @@
+package db;
+
+public class SAGYO_CODE_DEF  extends TABLE_DEFINITION{
+
+	@Override
+	public String getCreateQuery() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+}

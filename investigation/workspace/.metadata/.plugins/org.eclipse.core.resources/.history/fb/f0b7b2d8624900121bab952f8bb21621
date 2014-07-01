@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/FormTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/FormBtn_TOUROKU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/CountTxt"
+        android:layout_below="@+id/CountTxt"
+        android:onClick="registForm"
+        android:text="登録" />
+
+    <Button
+        android:id="@+id/FormBtn_Modoru"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/CountBtn_TOUROKU"
+        android:layout_alignBottom="@+id/CountBtn_TOUROKU"
+        android:layout_toLeftOf="@+id/CountBtn_TOUROKU"
+        android:onClick="moveToBACK"
+        android:text="戻る" />
+
+    <TextView
+        android:id="@+id/FormLvl_TANI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CountTxt"
+        android:layout_alignLeft="@+id/CountTxt"
+        android:text="形式"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

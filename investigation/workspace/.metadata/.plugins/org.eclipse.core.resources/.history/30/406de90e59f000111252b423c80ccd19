@@ -1,0 +1,35 @@
+package com.gmail.sample.test;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import com.gmail.sample.AndroidWithJenkinsActivity;
+
+import android.app.Activity;
+import android.test.ActivityInstrumentationTestCase2;
+import android.widget.Button;
+
+public class Test1 extends ActivityInstrumentationTestCase2<AndroidWithJenkinsActivity> {
+
+	private Activity tActivity;
+	private Button tButton;
+
+	public Test1(String pkg, Class<AndroidWithJenkinsActivity> activityClass) {
+		super(pkg, activityClass);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	@Override
+	protected void setUp() throws Exception{
+		super.setUp();
+
+		tActivity = getActivity();
+		tButton = (Button) tActivity.findViewById(com.gmail.sample.R.id.mButton);
+
+
+	}
+	@Test
+	public void test() {
+		fail("まだ実装されていません");
+	}
+
+}

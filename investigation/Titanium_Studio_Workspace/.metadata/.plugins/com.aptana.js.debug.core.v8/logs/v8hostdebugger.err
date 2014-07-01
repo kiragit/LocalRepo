@@ -1,0 +1,30 @@
+[“y 1 18 08:25:22 JST 2014] Connection closed
+[“y 1 18 08:53:58 JST 2014] Connection closed
+[“y 1 18 09:03:34 JST 2014] java.lang.RuntimeException: Failed to acquire semaphore (timeout)
+	at org.chromium.sdk.CallbackSemaphore.acquireDefault(CallbackSemaphore.java:42)
+	at com.aptana.js.debug.core.v8.V8DebugHost.removeBreakpoint(V8DebugHost.java:1256)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.processBreakpoint(AbstractDebugHost.java:409)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.handleMessage(AbstractDebugHost.java:332)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.access$5(AbstractDebugHost.java:244)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost$1.run(AbstractDebugHost.java:188)
+
+[“y 1 18 09:05:34 JST 2014] java.lang.RuntimeException: Failed to acquire semaphore (timeout)
+	at org.chromium.sdk.CallbackSemaphore.acquireDefault(CallbackSemaphore.java:42)
+	at com.aptana.js.debug.core.v8.V8DebugHost.setBreakpoint(V8DebugHost.java:1231)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.processBreakpoint(AbstractDebugHost.java:401)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.handleMessage(AbstractDebugHost.java:332)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.access$5(AbstractDebugHost.java:244)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost$1.run(AbstractDebugHost.java:188)
+
+[“y 1 18 09:07:34 JST 2014] java.lang.RuntimeException: Failed to acquire semaphore (timeout)
+	at org.chromium.sdk.CallbackSemaphore.acquireDefault(CallbackSemaphore.java:42)
+	at com.aptana.js.debug.core.v8.V8DebugHost.setBreakpoint(V8DebugHost.java:1231)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.processBreakpoint(AbstractDebugHost.java:401)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.handleMessage(AbstractDebugHost.java:332)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost.access$5(AbstractDebugHost.java:244)
+	at com.aptana.js.debug.core.internal.model.AbstractDebugHost$1.run(AbstractDebugHost.java:188)
+
+[“y 1 18 09:07:34 JST 2014] Connection closed
+[“y 1 18 09:07:34 JST 2014] Connection closed
+[“y 1 18 09:07:34 JST 2014] Connection closed
+[“y 1 18 15:09:16 JST 2014] Connection closed

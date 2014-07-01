@@ -1,0 +1,50 @@
+package db;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class SAGYO_NO_Adapter {
+
+	//DB接続情報
+	private String DB_NAME = "mydb2";
+	final private String TABLE_NAME = "SAGYO_NO";
+	private int TABLE_VERSION = 3;
+
+	//テーブル　フィールド情報
+	private String COL_ID = "_id";
+	private String COL_YEAR = "year";
+	private String COL_MONTH = "month";
+	private String COL_DAY = "day";
+	private String COL_HOUR = "hour";
+	private String COL_MIN = "min";
+
+	protected final Context context;
+	protected SAGYO_NO_OpenHelper dbHelper;
+	protected SQLiteDatabase db;
+
+	private class SAGYO_NO_OpenHelper extends SQLiteOpenHelper {
+
+		public SAGYO_NO_OpenHelper(Context context) {
+			super(context, DB_NAME, null, TABLE_VERSION);
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			db.execSQL("create table " + TABLE_NAME + " (" + COL_ID
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_YEAR
+					+ " TEXT NOT NULL," + COL_MONTH + " TEXT NOT NULL,"
+					+ COL_DAY + " TEXT NOT NULL," + COL_HOUR
+					+ " TEXT NOT NULL," + COL_MIN + " TEXT NOT NULL);");
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			if (oldVersion > newVersion) {
+				db.execSQL("drop table " + TABLE_NAME + ";");
+				onCreate(db);
+			}
+		}
+	}
+}
+

@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/SelectBtn_Count"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="38dp"
+        android:layout_weight="1"
+        android:text="成果物の単位" />
+
+    <Button
+        android:id="@+id/SelectBtn_FORM"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:text="成果物の形式" />
+
+    <Button
+        android:id="@+id/SelectBtn_PATERN"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        android:text="定型パターン" />
+
+    <Button
+        android:id="@+id/SelectBtn_SAGYOCode"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        android:text="作業コード" />
+
+    <Button
+        android:id="@+id/SelectBtn_SAGYONo"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:text="作業番号" />
+
+    <Button
+        android:id="@+id/SelectBtn_SAGYONo"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:text="作業番号" />
+
+    <Button
+        android:id="@+id/SelectBtn_modoru"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="戻る" />
+
+</LinearLayout>

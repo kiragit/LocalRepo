@@ -1,0 +1,52 @@
+package pg;
+
+import java.sql.Date;
+import java.sql.Time;
+
+public class JISSEKI {
+	  private int SAKUBAN_ID;
+	  private int USER_ID;
+	  private Date JISSEKI_DATE;
+	  private Time JISSEKI_TIME_START;
+	  private Time JISSEKI_TIME_END;
+
+	public JISSEKI(int SAKUBAN_ID, int USER_ID, Date date, Time time_start, Time time_end) {
+	  this.SAKUBAN_ID=SAKUBAN_ID;
+	  this.USER_ID=USER_ID;
+	  this.JISSEKI_DATE=date;
+	  this.JISSEKI_TIME_START=time_start;
+	  this.JISSEKI_TIME_END=time_end;
+
+	}
+	public int getSAKUBAN_ID() {
+		return SAKUBAN_ID;
+	}
+	public void setSAKUBAN_ID(int sAKUBAN_ID) {
+		SAKUBAN_ID = sAKUBAN_ID;
+	}
+	public int getUSER_ID() {
+		return USER_ID;
+	}
+	public void setUSER_ID(int uSER_ID) {
+		USER_ID = uSER_ID;
+	}
+	public Date getJISSEKI_DATE() {
+		return JISSEKI_DATE;
+	}
+	public void setJISSEKI_DATE(Date jISSEKI_DATE) {
+		JISSEKI_DATE = jISSEKI_DATE;
+	}
+	public Time getJISSEKI_TIME_START() {
+		return JISSEKI_TIME_START;
+	}
+	public void setJISSEKI_TIME_START(Time jISSEKI_TIME_START) {
+		JISSEKI_TIME_START = jISSEKI_TIME_START;
+	}
+	public Time getJISSEKI_TIME_END() {
+		return JISSEKI_TIME_END;
+	}
+	public void setJISSEKI_TIME_END(Time jISSEKI_TIME_END) {
+		JISSEKI_TIME_END = jISSEKI_TIME_END;
+	}
+
+}

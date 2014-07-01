@@ -1,0 +1,4 @@
+/**
+ * Sample Action Package for Jenkins.
+ */
+package java.jp.gihyo.jenkinsbook.action;

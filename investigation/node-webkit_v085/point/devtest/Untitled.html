@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Untitled Document</title>
+        <script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+        <script type="text/javascript">
+	        var win = window.open("https://scholar-ps.sas.jasso.go.jp/mypage/login_open.do");
+	        setTimeout(function() {console.log("1000ms");
+		        win.document.$("#login_open_userId").val = "test";
+		        console.log(data1);
+		        win.close();
+	    	}, 1000);
+
+        </script>
+
+    </head>
+    <body>
+    </body>
+</html>

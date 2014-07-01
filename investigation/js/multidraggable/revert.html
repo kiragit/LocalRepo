@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>UI multidraggable demo</title>
+	<link type="text/css" href="./css/styles.css" rel="stylesheet" />
+	<script type="text/javascript" src="./js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui-1.8.8.custom.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.ui.multidraggable-1.8.8.js"></script>
+	<script type="text/javascript">
+	    $(function() {
+	        $("#drag1").multidraggable({ "revert": "valid" });
+	        $("#drag2").multidraggable({ "revert": "invalid" });
+	        $("#target").droppable();
+	    });
+	</script>
+</head>
+<body>
+	<div id="demo_description">
+		<p>Revert, revert duration and scope are all according the individual elements. Here one draggable is set to revert invalid and the other revert invalid.<br />Try by grouping and dragging the group onto the target.</p>
+	</div>
+	<div id="drag1" class="multidraggable">
+		<p>Revert when valid</p>
+	</div>
+
+	<div id="drag2" class="multidraggable">
+		<p>Revert when invalid</p>
+	</div>
+	
+	<div id="target"></div>
+	
+</body>
+</html>

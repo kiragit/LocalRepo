@@ -1,0 +1,77 @@
+package com.example.sakuban;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.Display;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ListView;
+
+public class GraphView extends View {
+
+	private int width=320;
+	private int height=480;
+	private int sp = 2;
+	private int ep = 98;
+	private int mm = 2;
+	private int sm = 1;
+
+	public GraphView(Context context) {
+		super(context);
+		setCanvasSize(context);
+	}
+
+	public GraphView(Context context, AttributeSet attrs ) {
+		super(context,attrs);
+		//setCanvasSize(context);
+	}
+
+
+	public void onDraw(Canvas c){
+		super.onDraw(c);
+		c.drawColor(Color.BLACK);
+		for(int day=0; day<32; day++){
+			baseOfday(c,day*11+10);
+		}
+	}
+
+	private void setCanvasSize(Context context){
+		WindowManager wm = (WindowManager)context.getSystemService(context.WINDOW_SERVICE);
+		Display disp = wm.getDefaultDisplay();
+		width = disp.getWidth();
+		height = disp.getHeight();
+	}
+
+	private void baseOfday(Canvas c,int day){
+
+		Paint p = new Paint();
+		p.setColor(Color.rgb(255, 255, 255));
+		c.drawLine(X(sp), Y(day), X(ep), Y(day), p);
+		//ƒƒCƒ“–Ú·‚è@‚UŽžŠÔ‚²‚Æ
+		c.drawLine(timeX(0), Y(day-mm), timeX(0), Y(day+mm), p);
+		c.drawLine(timeX(6), Y(day-mm), timeX(6), Y(day+mm), p);
+		c.drawLine(timeX(12), Y(day-mm), timeX(12), Y(day+mm), p);
+		c.drawLine(timeX(18), Y(day-mm), timeX(18), Y(day+mm), p);
+		c.drawLine(timeX(24), Y(day-mm), timeX(24), Y(day+mm), p);
+		//ƒTƒu–Ú·‚è ‚PŽžŠÔ‚²‚Æ
+		for(int i=0;i<25;i++){
+			c.drawLine(timeX(i), Y(day-sm), timeX(i), Y(day+sm), p);
+		}
+
+
+	}
+
+	private int timeX(float t){
+		return (int)(X(sp) + (X(ep)-X(sp))*(t/24));
+	}
+	private int X(float x){
+		return (int)Math.round((width*x)/100);
+	}
+
+	private int Y(float y){
+		return (int)Math.round((height*y)/100);
+	}
+}

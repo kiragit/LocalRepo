@@ -1,0 +1,53 @@
+package com.gmail.sample.test;
+
+import org.junit.Test;
+
+import android.app.Activity;
+import android.test.ActivityInstrumentationTestCase2;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.gmail.sample.AndroidWithJenkinsActivity;
+import com.gmail.sample.R;
+
+public class TestCase extends ActivityInstrumentationTestCase2<AndroidWithJenkinsActivity> {
+
+	private Activity tActivity;
+	private Button tButton;
+	private TextView tTextView_1;
+	private TextView tTextView_2;
+
+	public TestCase() {
+		super("com.gmail.sample", AndroidWithJenkinsActivity.class);
+	}
+
+	public TestCase(String pkg, Class<AndroidWithJenkinsActivity> activityClass) {
+		super(pkg, activityClass);
+	}
+
+	@Override
+	protected void setUp() throws Exception{
+		super.setUp();
+
+		tActivity = getActivity();
+		tButton = (Button) tActivity.findViewById(R.id.mButton);
+		tTextView_1= (TextView) tActivity.findViewById(R.id.mTextPaint_1);
+		tTextView_2= (TextView) tActivity.findViewById(R.id.mTextPaint_2);
+
+	}
+
+	@Test
+	public void testButton() {
+		assertEquals(tButton.getText(), "Hello World, AndroidWithJenkinsActivity!");
+	}
+
+	@Test
+	public void testTextView1() {
+		assertEquals(tButton.getText(), "Hello World, AndroidWithJenkinsActivity!");
+	}
+
+	@Test
+	public void testTextView2() {
+		assertEquals(tTextView_1.getText(), "Hello World, AndroidWithJenkinsActivity!");
+	}
+}

@@ -1,0 +1,18 @@
+//win
+var w = Titanium.UI.createWindow({
+  backgroundColor:'blue'
+});
+//view
+var view = Ti.UI.createView();
+//label
+var label = Ti.UI.createLabel({
+	text:'Hello World',
+	height:32,
+	width:100,
+	top:120,
+	color:'red'
+});
+//viewにlabelを追加
+view.add(label);
+//winにviewを追加
+win.add(view);

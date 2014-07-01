@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>UI multidraggable demo</title>
+	<link type="text/css" href="./css/styles.css" rel="stylesheet" />
+	<script type="text/javascript" src="./js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui-1.8.8.custom.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.ui.multidraggable-1.8.8.js"></script>
+	<script type="text/javascript">
+	$(function() {
+		$(".multidraggable").multidraggable();
+	});
+	</script>
+</head>
+<body>
+	<div id="demo_description">
+		<p>Base multidraggable functionality. Ctrl-click to group items and then drag grouped items. Items can be dragged individually went not grouped.</p>
+	</div>
+	<div id="a" class="multidraggable">
+		<p>Draggable</p>
+	</div>
+
+	<div id="b" class="multidraggable">
+		<p>Draggable</p>
+	</div>
+	
+	<div id="c" class="multidraggable">
+		<p>Draggable</p>
+	</div>	
+</body>
+</html>

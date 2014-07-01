@@ -1,0 +1,16 @@
+package pg;
+
+public class SAKUBAN {
+	private int SAKUBAN_ID;
+	private int SAKUBAN_TYPE;
+	private String SAKUBAN_ID_NAME;
+	private String SAKUBAN_TYPE_NAME;
+	public int getSAKUBAN_ID() {
+		return SAKUBAN_ID;
+	}
+	public void setSAKUBAN_ID(int sAKUBAN_ID) {
+		SAKUBAN_ID = sAKUBAN_ID;
+	}
+
+
+}

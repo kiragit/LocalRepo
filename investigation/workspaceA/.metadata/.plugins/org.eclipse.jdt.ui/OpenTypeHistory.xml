@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=HanasiteKakeibo/src&lt;com.mikankui.hanasite.kakeibo.input{InputActivity.java[InputActivity" modifiers="1" timestamp="1376234860000"/>
+<typeInfo handle="=HanasiteKakeibo/src&lt;com.mikankui.hanasite.kakeibo.db{DbAdapter.java[DbAdapter" modifiers="1" timestamp="1376234862000"/>
+<typeInfo handle="=HanasiteKakeibo/src&lt;com.mikankui.hanasite.kakeibo.input{UpdateDbByLine.java[UpdateDbByLine" modifiers="1" timestamp="1377422342000"/>
+<typeInfo handle="=HanasiteKakeibo/src&lt;com.mikankui.hanasite.kakeibo.util{FormatUtil.java[FormatUtil" modifiers="1" timestamp="1377432188000"/>
+<typeInfo handle="=HanasiteKakeibo/src&lt;com.mikankui.hanasite.kakeibo.util{CheckUtil.java[CheckUtil" modifiers="1" timestamp="1377326000000"/>
+<typeInfo handle="=HanasiteKakeibo/src&lt;com.mikankui.hanasite.kakeibo.util{SqlFileUtil.java[SqlFileUtil" modifiers="1" timestamp="1378567806000"/>
+<typeInfo handle="=HanasiteKakeibo/src&lt;com.mikankui.hanasite.kakeibo.db{DbOpenHelper.java[DbOpenHelper" modifiers="1" timestamp="1378648219000"/>
+</typeInfoHistroy>

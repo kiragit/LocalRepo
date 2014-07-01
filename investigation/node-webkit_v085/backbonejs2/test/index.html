@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="lib/mocha.css" />
+        <script type="text/javascript" src="lib/mocha.js"></script>
+        <script type="text/javascript" src="lib/chai.js"></script>
+        <script type="text/javascript">
+            chai.should();
+            
+            var expect = chai.expect;
+            mocha.setup("bdd");
+            </script>
+    </head>
+    <body style="background: #aaa">
+        <script type="text/javascript" src="test.js"></script>
+        <div id="mocha"></div>
+        <script type="text/javascript">
+            (function() {
+             mocha.run();
+             })();
+            </script>
+    </body>
+</html>

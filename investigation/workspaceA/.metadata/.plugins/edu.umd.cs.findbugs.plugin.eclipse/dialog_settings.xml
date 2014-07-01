@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;bugExplorer CommonNavigator.LINKING_ENABLED=&quot;0&quot;/&gt;" key="memento"/>
+	<section name="FilterBugDialog">
+		<item value="503" key="DIALOG_WIDTH"/>
+		<item value="81" key="DIALOG_Y_ORIGIN"/>
+		<item value="469" key="DIALOG_X_ORIGIN"/>
+		<item value="475" key="DIALOG_HEIGHT"/>
+		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="GroupSelectionDialog">
+		<item value="253" key="DIALOG_WIDTH"/>
+		<item value="216" key="DIALOG_Y_ORIGIN"/>
+		<item value="594" key="DIALOG_X_ORIGIN"/>
+		<item value="272" key="DIALOG_HEIGHT"/>
+		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

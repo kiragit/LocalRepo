@@ -1,0 +1,4 @@
+/**
+ * Sample DTO Package for Jenkins.
+ */
+package java.jp.gihyo.jenkinsbook.dto;

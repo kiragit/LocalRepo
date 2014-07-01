@@ -1,0 +1,7 @@
+package com.example.sakuban.test;
+
+import junit.framework.TestCase;
+
+public class Sampletest extends TestCase {
+
+}

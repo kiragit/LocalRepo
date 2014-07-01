@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp" />
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/datePicker1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp" />
+
+    <Spinner
+        android:id="@+id/spinnerTANI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/timePicker1"
+        android:layout_below="@+id/timePicker1"
+        android:layout_marginTop="27dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinnerTANI"
+        android:layout_below="@+id/spinnerTANI" />
+
+    <Spinner
+        android:id="@+id/spinnerFORM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner2"
+        android:layout_below="@+id/spinner2" />
+
+    <Button
+        android:id="@+id/MAIN_TOUROKU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/spinnerTANI"
+        android:layout_alignBottom="@+id/spinnerTANI"
+        android:layout_alignRight="@+id/timePicker1"
+        android:onClick="registSTART"
+        android:text="登録" />
+
+    <Button
+        android:id="@+id/MAIN_ITIRAN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spinnerFORM"
+        android:layout_alignLeft="@+id/MAIN_TOUROKU"
+        android:onClick="moveToList"
+        android:text="一覧" />
+
+    <Button
+        android:id="@+id/MAIN_Settei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/spinnerFORM"
+        android:layout_alignLeft="@+id/MAIN_ITIRAN"
+        android:onClick="moveToSelect"
+        android:text="設定" />
+
+    <EditText
+        android:id="@+id/Count_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/spinnerFORM"
+        android:layout_alignTop="@+id/MAIN_Settei"
+        android:layout_toLeftOf="@+id/MAIN_Settei"
+        android:layout_toRightOf="@+id/spinnerFORM"
+        android:ems="10"
+        android:inputType="number" />
+
+</RelativeLayout>

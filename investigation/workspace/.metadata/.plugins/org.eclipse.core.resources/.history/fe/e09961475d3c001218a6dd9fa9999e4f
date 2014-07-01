@@ -1,0 +1,7 @@
+package pg;
+
+public class USER {
+	private int USER_ID;
+	private String USER_NAME;
+
+}

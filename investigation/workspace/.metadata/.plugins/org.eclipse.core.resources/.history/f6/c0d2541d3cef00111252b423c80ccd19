@@ -1,0 +1,73 @@
+package jp.gihyo.jenkinsbook.action;
+
+import static org.junit.Assert.assertEquals;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
+
+public class SampleActionTest {
+
+	public static void main(String[] args) {
+		JUnitCore.main(SampleActionTest.class.getName());
+	}
+
+	@Test
+	public void testCheckNormal() {
+		SampleAction action = new SampleAction();
+		HttpServletRequest request = org.easymock.EasyMock.createMock(HttpServletRequest.class);
+
+		org.easymock.EasyMock.expect(request.getParameter("FirstName")).andReturn("firstName");
+		org.easymock.EasyMock.expect(request.getParameter("LastName")).andReturn("lastName");
+
+		org.easymock.EasyMock.replay(request);
+		boolean result = action.checkParameter(request);
+		org.easymock.EasyMock.verify(request);
+
+		assertEquals(result, true);
+	}
+
+	@Test
+	public void testCheckError1() {
+		SampleAction action = new SampleAction();
+		HttpServletRequest request = org.easymock.EasyMock.createMock(HttpServletRequest.class);
+
+		org.easymock.EasyMock.expect(request.getParameter("FirstName")).andReturn(null);
+
+		org.easymock.EasyMock.replay(request);
+		boolean result = action.checkParameter(request);
+		org.easymock.EasyMock.verify(request);
+
+		assertEquals(result, false);
+	}
+
+	@Test
+	public void testCheckError2() {
+		HttpServletRequest request = org.easymock.EasyMock.createMock(HttpServletRequest.class);
+		SampleAction action = new SampleAction();
+
+		org.easymock.EasyMock.expect(request.getParameter("FirstName")).andReturn("firstName");
+		org.easymock.EasyMock.expect(request.getParameter("LastName")).andReturn(null);
+
+		org.easymock.EasyMock.replay(request);
+		boolean result = action.checkParameter(request);
+		org.easymock.EasyMock.verify(request);
+
+		assertEquals(result, false);
+	}
+
+	@Test
+	public void testCheckError3() {
+		SampleAction action = new SampleAction();
+		HttpServletRequest request = org.easymock.EasyMock.createMock(HttpServletRequest.class);
+
+		org.easymock.EasyMock.expect(request.getParameter("FirstName")).andReturn("");
+
+		org.easymock.EasyMock.replay(request);
+		boolean result = action.checkParameter(request);
+		org.easymock.EasyMock.verify(request);
+
+		assertEquals(result, false);
+	}
+}

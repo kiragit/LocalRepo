@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.2" sequence="1" timestamp="1378555092616" analysisTimestamp="1378555088278" release="">
+  <Project projectName="HanasiteKakeiboTest">
+    <Jar>/Users/kentarokira/Documents/workspaceA/HanasiteKakeiboTest/bin/classes/com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.class</Jar>
+    <AuxClasspathEntry>/Users/kentarokira/Documents/workspaceA/HanasiteKakeiboTest/bin/classes</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/kentarokira/git/KAKEIBO2/HanasiteKakeibo/libs/adlantis.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/kentarokira/git/KAKEIBO2/HanasiteKakeibo/libs/achartengine-1.1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/kentarokira/git/KAKEIBO2/HanasiteKakeibo/bin/classes</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/kentarokira/git/KAKEIBO2/HanasiteKakeibo/libs/android-support-v4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Applications/eclipse/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Applications/eclipse/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Applications/sdk/platforms/android-18/android.jar</AuxClasspathEntry>
+    <SrcDir>/Users/kentarokira/Documents/workspaceA/HanasiteKakeiboTest/gen</SrcDir>
+    <SrcDir>/Users/kentarokira/Documents/workspaceA/HanasiteKakeiboTest/src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" abbrev="DLS" category="STYLE" first="1">
+    <Class classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Class>
+    <Method classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" name="testReadSqlFile_&#30064;&#24120;_testReadSqlFile_&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12394;&#12375;" signature="()V" isStatic="false">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" start="107" end="112" startBytecode="0" endBytecode="10" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Method>
+    <LocalVariable name="list" register="1" pc="11" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" start="107" end="107" startBytecode="10" endBytecode="10" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="list"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" abbrev="DLS" category="STYLE" first="1">
+    <Class classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Class>
+    <Method classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" name="testReadSqlFile_&#30064;&#24120;_testReadSqlFile_&#12501;&#12449;&#12452;&#12523;&#12394;&#12375;" signature="()V" isStatic="false">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" start="121" end="126" startBytecode="0" endBytecode="10" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Method>
+    <LocalVariable name="list" register="1" pc="11" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" start="121" end="121" startBytecode="10" endBytecode="10" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="list"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+  </BugInstance>
+  <BugInstance type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" priority="2" abbrev="ST" category="STYLE" first="1">
+    <Class classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Class>
+    <Method classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" name="setUp" signature="()V" isStatic="false">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" start="28" end="30" startBytecode="0" endBytecode="61" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Method>
+    <Field classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" name="cntext" signature="Landroid/content/Context;" isStatic="true">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Field>
+    <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" start="29" end="29" startBytecode="8" endBytecode="8" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Class>
+    <Field classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" name="NGcase0001" signature="Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+    </Field>
+    <SourceLine classname="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" start="17" end="17" startBytecode="25" endBytecode="25" sourcefile="CK_SqlFileUtil.java" sourcepath="com/mikankui/hanasite/kakeibo/test/util/CK_SqlFileUtil.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Sat, 7 Sep 2013 20:55:44 +0900" total_classes="1" referenced_classes="37" total_bugs="4" total_size="62" num_packages="1" vm_version="23.25-b01" cpu_seconds="9.42" clock_seconds="4.38" peak_mbytes="418.72" alloc_mbytes="742.44" gc_seconds="0.85" priority_2="4">
+    <PackageStats package="com.mikankui.hanasite.kakeibo.test.util" total_bugs="4" total_types="1" total_size="62" priority_2="4">
+      <ClassStats class="com.mikankui.hanasite.kakeibo.test.util.CK_SqlFileUtil" sourceFile="CK_SqlFileUtil.java" interface="false" size="62" bugs="4" priority_2="4"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="766" invocations="14" avgMicrosecondsPerInvocation="54716" maxMicrosecondsPerInvocation="756011" standardDeviationMircosecondsPerInvocation="194505"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="683" invocations="2" avgMicrosecondsPerInvocation="341656" maxMicrosecondsPerInvocation="355105" standardDeviationMircosecondsPerInvocation="13449"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="383" invocations="268" avgMicrosecondsPerInvocation="1430" maxMicrosecondsPerInvocation="87974" standardDeviationMircosecondsPerInvocation="5861"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="110" invocations="276" avgMicrosecondsPerInvocation="401" maxMicrosecondsPerInvocation="1669" standardDeviationMircosecondsPerInvocation="198"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="105" invocations="37" avgMicrosecondsPerInvocation="2860" maxMicrosecondsPerInvocation="17086" standardDeviationMircosecondsPerInvocation="3631"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="92" invocations="37" avgMicrosecondsPerInvocation="2503" maxMicrosecondsPerInvocation="20727" standardDeviationMircosecondsPerInvocation="3949"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="67" invocations="14" avgMicrosecondsPerInvocation="4815" maxMicrosecondsPerInvocation="63302" standardDeviationMircosecondsPerInvocation="16225"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="65" invocations="50" avgMicrosecondsPerInvocation="1303" maxMicrosecondsPerInvocation="25193" standardDeviationMircosecondsPerInvocation="3655"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1378555092601" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>

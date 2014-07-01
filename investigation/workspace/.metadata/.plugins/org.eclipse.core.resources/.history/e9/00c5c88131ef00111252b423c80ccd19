@@ -1,0 +1,4 @@
+/**
+ * Sample Servlet Package for Jenkins.
+ */
+package java.jp.gihyo.jenkinsbook;

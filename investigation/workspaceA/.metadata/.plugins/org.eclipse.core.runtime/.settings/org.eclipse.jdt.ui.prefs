@@ -1,0 +1,39 @@
+command=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/bin/javadoc
+content_assist_favorite_static_members=org.hamcrest.MatcherAssert.*;org.hamcrest.CoreMatchers.*;org.junit.matchers.JUnitMatchers.*;org.junit.Assert.*;org.mockito.Matchers.*;org.mockito.Mockito.*
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceActivity"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.app.Activity"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.view.LayoutInflater$Factory2"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.view.Window$Callback"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.view.KeyEvent$Callback"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.view.View$OnCreateContextMenuListener"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.content.ComponentCallbacks2"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.view.LayoutInflater$Factory"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.content.ComponentCallbacks"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.view.ContextThemeWrapper"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.content.ContextWrapper"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="android.content.Context"><rhs name\="com.mikankui.hanasite.kakeibo.preference.PreferenceData"/></lhs><lhs name\="java.lang.CharSequence"><rhs name\="java.lang.String"/></lhs></history>
+content_assist_number_of_computers=12
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+fontPropagated=true
+org.eclipse.jdt.ui.editor.tab.width=
+org.eclipse.jdt.ui.exception.name=e
+org.eclipse.jdt.ui.formatterprofiles.version=12
+org.eclipse.jdt.ui.gettersetter.use.is=true
+org.eclipse.jdt.ui.ignorelowercasenames=true
+org.eclipse.jdt.ui.importorder=java;javax;org;com;
+org.eclipse.jdt.ui.javadoclocations.migrated=true
+org.eclipse.jdt.ui.ondemandthreshold=99
+org.eclipse.jdt.ui.overrideannotation=true
+org.eclipse.jdt.ui.staticondemandthreshold=99
+org.eclipse.jdt.ui.text.code_templates_migrated=true
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.templates_migrated=true
+org.eclipse.jface.textfont=1|Monaco|11.0|0|COCOA|1|;
+proposalOrderMigrated=true
+sourceHoverBackgroundColor=250,251,197
+spelling_ignore_ampersand_in_properties=true
+spelling_ignore_digits=true
+spelling_ignore_java_strings=true
+spelling_ignore_mixed=true
+spelling_ignore_non_letters=true
+spelling_ignore_sentence=true
+spelling_ignore_single_letters=true
+spelling_ignore_upper=true
+spelling_ignore_urls=true
+spelling_locale_initialized=true
+spelling_user_dictionary_encoding=
+tabWidthPropagated=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

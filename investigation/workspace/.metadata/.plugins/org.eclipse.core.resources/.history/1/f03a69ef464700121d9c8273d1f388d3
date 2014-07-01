@@ -1,0 +1,17 @@
+package db;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class SAGYO_NO_DEF  extends TABLE_DEFINITION{
+
+	@Override
+	public String getCreateQuery() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+
+}
+

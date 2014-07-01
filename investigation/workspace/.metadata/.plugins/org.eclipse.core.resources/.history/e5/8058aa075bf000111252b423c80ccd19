@@ -1,0 +1,40 @@
+package com.gmail.sample.test;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import com.gmail.sample.AndroidWithJenkinsActivity;
+import com.gmail.sample.R;
+
+import android.app.Activity;
+import android.test.ActivityInstrumentationTestCase2;
+import android.widget.Button;
+
+public class Test1 extends ActivityInstrumentationTestCase2<AndroidWithJenkinsActivity> {
+
+	private Activity tActivity;
+	private Button tButton;
+
+	public Test1() {
+		super("com.gmail.sample", AndroidWithJenkinsActivity.class);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	public Test1(String pkg, Class<AndroidWithJenkinsActivity> activityClass) {
+		super(pkg, activityClass);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	@Override
+	protected void setUp() throws Exception{
+		super.setUp();
+
+		tActivity = getActivity();
+		tButton = (Button) tActivity.findViewById(R.id.mButton);
+
+	}
+	@Test
+	public void testButton() {
+		assertEquals(tButton.getText(), "");
+	}
+
+}

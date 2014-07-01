@@ -1,0 +1,21 @@
+/*
+   common.css
+   InstallAppActivity
+   
+   Created by kentaro kira 2013-02-14.
+   Copyright 2013 kentaro kira All rights reserved.
+*/
+
+header,footer,nav,section{
+	display:block;
+	border:1dp solid #ccc;
+	margin:5dp;
+	padding:20dp;
+}header {
+	text-align:center;
+	padding:30dp;
+}
+nav{
+	float:left;
+	
+}

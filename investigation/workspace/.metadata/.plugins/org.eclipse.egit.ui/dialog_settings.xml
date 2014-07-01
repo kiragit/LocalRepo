@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="/Users/kentarokira/git/skbn/.git" key="GitSelectRepositoryPage.lastRepository"/>
+	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="git://skbn//Users/Shared/dropbox/Dropbox/git2/SKBN"/>
+		<item value="git://skbn/Shared/dropbox/Dropbox/git2/SKBN"/>
+		<item value="git://master/Shared/dropbox/Dropbox/git2/SKBN"/>
+		<item value="git://Users/Shared/dropbox/Dropbox/git2/SKBN"/>
+		<item value="file:////Users/Shared/dropbox/Dropbox/git2/SKBN"/>
+		<item value="ssh://git@github.com/kiragit/SKBN.git"/>
+		<item value="file:////Users/Shared/dropbox/Dropbox/git/skbn_test.git"/>
+		<item value="file:////Users/Shared/dropbox/Dropbox/git"/>
+		<item value="/Users/Shared/dropbox/Dropbox/git/skbn_test.git"/>
+		<item value="file:////Users/Shared/dropbox/Dropbox/git/.git"/>
+	</list>
+	<section name="org.eclipse.egit.ui.internal.fetch.FetchResultDialog.dialogBounds">
+		<item value="614" key="DIALOG_WIDTH"/>
+		<item value="103" key="DIALOG_Y_ORIGIN"/>
+		<item value="413" key="DIALOG_X_ORIGIN"/>
+		<item value="440" key="DIALOG_HEIGHT"/>
+		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

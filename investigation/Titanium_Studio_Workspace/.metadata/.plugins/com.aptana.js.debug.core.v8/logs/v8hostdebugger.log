@@ -1,0 +1,67 @@
+Logger started at: 2014”N1ŒŽ18“ú 14Žž14•ª58•b JST
+Component: com.aptana.js.debug.core.v8
+Version: 3.0.0.1386497541
+[15:0.961] Recv: >1390022100961*version<
+[15:0.961] Sent: >32*1390022100961*1*3.0.0.1386497541<
+[15:0.963] Recv: >1390022100962*option*stepFiltersEnabled*false<
+[15:0.963] Sent: >50*1390022100962*!unknown option <stepFiltersEnabled><
+[15:0.963] Recv: >1390022100963*option*monitorXHR*true<
+[15:0.963] Sent: >42*1390022100963*!unknown option <monitorXHR><
+[15:0.963] Recv: >1390022100964*option*suspendOnFirstLine*false<
+[15:0.964] Sent: >13*1390022100964<
+[15:0.964] Recv: >1390022100965*option*suspendOnExceptions*false<
+[15:1.27] Sent: >13*1390022100965<
+[15:1.27] Recv: >1390022100966*option*suspendOnErrors*true<
+[15:1.263] Sent: >13*1390022100966<
+[15:1.263] Recv: >1390022100967*option*suspendOnKeywords*true<
+[15:1.263] Sent: >13*1390022100967<
+[15:1.264] Recv: >1390022100968*option*bypassConstructors*false<
+[15:1.264] Sent: >50*1390022100968*!unknown option <bypassConstructors><
+[15:1.264] Recv: >1390022100969*option*stepFiltersEnabled*false<
+[15:1.264] Sent: >50*1390022100969*!unknown option <stepFiltersEnabled><
+[15:1.265] Recv: >1390022100970*detailFormatters<
+[15:1.265] Sent: >13*1390022100970<
+[15:1.265] Recv: >1390022100971*breakpoint*create*app:/app.js*2*0*0**1<
+[15:1.356] Sent: >21*1390022100971*created<
+[15:1.356] Recv: >1390022100972*breakpoint*create*app:/js/app2.js*132*1*0**1<
+[15:1.426] Sent: >21*1390022100972*created<
+[15:1.427] Recv: >1390022100973*breakpoint*create*app:/index.html*36*1*0**1<
+[15:1.496] Sent: >21*1390022100973*created<
+[15:1.496] Recv: >1390022100974*breakpoint*create*app:/index.html*25*1*0**1<
+[15:1.566] Sent: >21*1390022100974*created<
+[15:1.567] Recv: >1390022100975*breakpoint*create*app:/js/app2.js*179*0*0**1<
+[15:1.636] Sent: >21*1390022100975*created<
+[15:1.636] Recv: >1390022100976*breakpoint*create*app:/js/app2.js*180*0*0**1<
+[15:1.717] Sent: >21*1390022100976*created<
+[15:1.717] Recv: >1390022100977*breakpoint*create*app:/index.html*22*0*0**1<
+[15:1.786] Sent: >21*1390022100977*created<
+[15:1.786] Recv: >1390022100978*enable<
+[15:1.787] Sent: >13*resumed*start<
+[15:1.788] Sent: >46*scripts*created*1|ti:/webview.js|anonymous|1|1<
+[15:1.789] Sent: >44*scripts*created*2|ti:/kroll.js|anonymous|1|1<
+[15:1.787] Sent: >13*1390022100978<
+[15:1.789] Sent: >47*scripts*created*3|ti:/titanium.js|anonymous|1|1<
+[15:1.789] Sent: >49*scripts*created*4|ti:/properties.js|anonymous|1|1<
+[15:1.789] Sent: >45*scripts*created*5|ti:/events.js|anonymous|1|1<
+[15:1.789] Sent: >41*scripts*created*6|ti:/ui.js|anonymous|1|1<
+[15:1.790] Sent: >48*scripts*created*7|ti:/bootstrap.js|anonymous|1|1<
+[15:1.790] Sent: >47*scripts*created*8|ti:/tabgroup.js|anonymous|1|1<
+[15:1.790] Sent: >46*scripts*created*9|ti:/console.js|anonymous|1|1<
+[15:1.790] Sent: >44*scripts*created*10|ti:/path.js|anonymous|1|1<
+[15:1.790] Sent: >47*scripts*created*11|ti:/invoker.js|anonymous|1|1<
+[15:1.790] Sent: >43*scripts*created*12|ti:/tab.js|anonymous|1|1<
+[15:1.791] Sent: >43*scripts*created*13|ti:/url.js|anonymous|1|1<
+[15:1.791] Sent: >50*scripts*created*14|ti:/httpclient.js|anonymous|1|1<
+[15:1.791] Sent: >48*scripts*created*15|ti:/listview.js|anonymous|1|1<
+[15:1.791] Sent: >47*scripts*created*16|ti:/network.js|anonymous|1|1<
+[15:1.791] Sent: >46*scripts*created*17|ti:/window.js|anonymous|1|1<
+[15:1.791] Sent: >46*scripts*created*18|ti:/module.js|anonymous|1|1<
+[15:1.946] Sent: >46*scripts*created*19|app:///app.js|anonymous|1|1<
+[17:10.53] Recv: >1390022100979*breakpoint*change*app:/js/app2.js*132*1*0**1<
+[17:10.133] Sent: >21*1390022100979*changed<
+[17:10.134] Recv: >1390022100980*breakpoint*change*app:/js/app2.js*181*0*0**1<
+[17:10.134] Sent: >13*1390022100980<
+[17:10.134] Recv: >1390022100981*breakpoint*change*app:/js/app2.js*182*0*0**1<
+[17:10.134] Sent: >13*1390022100981<
+[9:16.88] Recv: >*terminate<
+----------End of file----------

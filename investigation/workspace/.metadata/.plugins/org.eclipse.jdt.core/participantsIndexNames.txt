@@ -1,0 +1,9 @@
+INDEX VERSION 1.126
+/Users/kentarokira/Documents/workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/492100342.index
+/sampleProject/src
+/Users/kentarokira/Documents/workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/4126765692.index
+/samplePJ2/src
+/Users/kentarokira/Documents/workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/817331711.index
+/samplePJ2/src
+/Users/kentarokira/Documents/workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/992933834.index
+/sampleProject/src

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.appcelerator.titanium.mobileweb.ui.preview.launchConfigurationType">
+<stringAttribute key="ATTR_PROJECT_NAME" value="todo3"/>
+<stringAttribute key="browserExecutable" value="/Applications/Firefox.app"/>
+<stringAttribute key="browser_executable" value="/Applications/Firefox.app"/>
+<booleanAttribute key="browser_use_external" value="true"/>
+<booleanAttribute key="browser_use_global" value="false"/>
+<stringAttribute key="mobileweb.previewServer" value="Built-in server"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/todo3"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="process_factory_id" value="com.appcelerator.titanium.ui.logLevelFilteringProcessFactory"/>
+</launchConfiguration>

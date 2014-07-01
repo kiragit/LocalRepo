@@ -1,0 +1,1 @@
+var win = window.open("https://scholar-ps.sas.jasso.go.jp/mypage/login_open.do");

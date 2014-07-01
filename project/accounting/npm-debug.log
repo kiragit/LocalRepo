@@ -1,0 +1,85 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/kentarokira/.nodebrew/current/bin/node',
+1 verbose cli   '/Users/kentarokira/.nodebrew/current/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'ccchart' ]
+2 info using npm@1.4.9
+3 info using node@v0.11.13
+4 verbose node symlink /Users/kentarokira/.nodebrew/current/bin/node
+5 warn package.json nw-demo@0.0.0 No description
+6 warn package.json nw-demo@0.0.0 No repository field.
+7 warn package.json nw-demo@0.0.0 No README data
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'ccchart', null ]
+10 verbose cache add name=undefined spec="ccchart" args=["ccchart",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'ccchart',
+11 verbose parsed url   path: 'ccchart',
+11 verbose parsed url   href: 'ccchart' }
+12 silly lockFile 4219b5d4-ccchart ccchart
+13 verbose lock ccchart /Users/kentarokira/.npm/4219b5d4-ccchart.lock
+14 silly lockFile 4219b5d4-ccchart ccchart
+15 silly lockFile 4219b5d4-ccchart ccchart
+16 verbose addNamed [ 'ccchart', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 26bdba85-ccchart ccchart@
+19 verbose lock ccchart@ /Users/kentarokira/.npm/26bdba85-ccchart.lock
+20 silly addNameRange { name: 'ccchart', range: '*', hasData: false }
+21 verbose url raw ccchart
+22 verbose url resolving [ 'https://registry.npmjs.org/', './ccchart' ]
+23 verbose url resolved https://registry.npmjs.org/ccchart
+24 info trying registry request attempt 1 at 14:22:16
+25 http GET https://registry.npmjs.org/ccchart
+26 http 404 https://registry.npmjs.org/ccchart
+27 verbose headers { date: 'Sat, 28 Jun 2014 05:22:17 GMT',
+27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+27 verbose headers   'content-type': 'application/json',
+27 verbose headers   'cache-control': 'max-age=0',
+27 verbose headers   'content-length': '52',
+27 verbose headers   'accept-ranges': 'bytes',
+27 verbose headers   via: '1.1 varnish',
+27 verbose headers   age: '0',
+27 verbose headers   'x-served-by': 'cache-ty66-TYO',
+27 verbose headers   'x-cache': 'MISS',
+27 verbose headers   'x-cache-hits': '0',
+27 verbose headers   'x-timer': 'S1403932937.091257,VS0,VE131',
+27 verbose headers   connection: 'close' }
+28 silly registry.get cb [ 404,
+28 silly registry.get   { date: 'Sat, 28 Jun 2014 05:22:17 GMT',
+28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '52',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-ty66-TYO',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1403932937.091257,VS0,VE131',
+28 silly registry.get     connection: 'close' } ]
+29 silly lockFile 26bdba85-ccchart ccchart@
+30 silly lockFile 26bdba85-ccchart ccchart@
+31 error 404 404 Not Found: ccchart
+31 error 404
+31 error 404 'ccchart' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404 It was specified as a dependency of 'nw-demo'
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Darwin 13.2.0
+33 error command "/Users/kentarokira/.nodebrew/current/bin/node" "/Users/kentarokira/.nodebrew/current/bin/npm" "install" "ccchart"
+34 error cwd /Users/kentarokira/Documents/開発/node-webkit-v0.10.0/yeild
+35 error node -v v0.11.13
+36 error npm -v 1.4.9
+37 error code E404
+38 verbose exit [ 1, true ]

@@ -1,0 +1,7 @@
+{
+  "name": "easy",
+  "main": "index.html",
+  "dependencies": {
+    "nedb": "^0.10.5"
+  }
+}

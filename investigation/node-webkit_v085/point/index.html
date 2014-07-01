@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>THIS IS TEMPLATE</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" media="screen and (min-width: 901px)" href="css/style.css">
+<link rel="stylesheet" media="screen and (max-width: 900px) and (min-width: 641px)" href="css/style-m.css">
+<link rel="stylesheet" media="screen and (max-width: 640px) and (min-width: 0px)" href="css/style-s.css">
+<!-- Webフォントの設定 -->
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro:900,400' rel='stylesheet' type='text/css'><!--[if lte IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if lte IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<script src="./lib/jquery-2.1.1.js"></script>
+<script src="./js/app.js"></script>
+</head>
+<body>
+	<header>
+		<hgroup>
+			<h1>ポイント残高照会</h1>
+		</hgroup>
+	</header>
+	 
+	<nav>
+		<ul id="nav_site">
+		</ul>
+	</nav>
+	 
+	<article>
+		<div></div>
+		<section>
+			<ul id="site">
+			</ul>
+		</section>
+	</article>
+	 
+	<aside>
+		<section>
+		    <input type="text" size="30" value="site name" id="title">
+		    <input type="text" size="100" value="site usrl" id="url">
+		    <input type="text" size="30" value="usr id" id="id">
+		    <input type="text" size="30" value="usr pass" id="pass">
+		    <input type="button" value="Exec" onclick="getlink();"/>
+		    <br />
+		    <ul id="output"></ul>
+		    <hr />
+		    <ul id="dblist"></ul>
+		</section>
+	</aside>
+	 
+	<footer>
+	Copyright © <a href="〜">ここにはコピーライト元の名称を記載</a> All Rights Reserved.
+	<address>by : <a href="〜">コピーライト元のURLを記載</a></address>
+	</footer>
+</body>
+</html>

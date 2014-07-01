@@ -1,0 +1,15 @@
+INSERT INTO PLACE_TAG_ID 
+(PLACE_TAG_ID,PLACE_TAG_NAME) 
+values 
+(100,"Living Room");
+/
+INSERT INTO PLACE_TAG_ID 
+(PLACE_TAG_ID,PLACE_TAG_NAME) 
+values 
+(10,"Dining Room");
+/
+INSERT INTO PLACE_TAG_ID 
+(PLACE_TAG_ID,PLACE_TAG_NAME) 
+values 
+(1,"Kitchen");
+/

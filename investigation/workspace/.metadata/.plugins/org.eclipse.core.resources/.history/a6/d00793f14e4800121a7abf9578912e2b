@@ -1,0 +1,111 @@
+package com.example.sakuban;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import db.DbAdapter;
+import db.WLOG_DEF;
+
+import android.net.Uri;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckedTextView;
+import android.widget.DatePicker;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+public class SKBNActivity extends Activity {
+
+	static DbAdapter dbAdapter;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_skbn);
+		dbAdapter = new DbAdapter();
+		setSpinner_COUNT();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_skbn, menu);
+		return true;
+	}
+
+	public void registSAKUBAN(View v) {
+
+		Uri uri = Uri.parse("content://db/WLOG_DEF");
+
+		ContentValues values = new ContentValues();
+
+		DatePicker d = (DatePicker) findViewById(R.id.datePicker1);
+		TimePicker t = (TimePicker) findViewById(R.id.timePicker1);
+
+		values.put(WLOG_DEF.getYEAR(), d.getYear());
+		values.put(WLOG_DEF.getMONTH(), d.getMonth());
+		values.put(WLOG_DEF.getDAY(), d.getDayOfMonth());
+		values.put(WLOG_DEF.getHOUR(), t.getCurrentHour());
+		values.put(WLOG_DEF.getMIN(), t.getCurrentMinute());
+
+		Log.d(this.toString(), "uri is " + uri);
+
+		dbAdapter.insert(uri, values);
+	}
+
+	public void printSAKUBAN(View v) {
+
+		Uri uri = Uri.parse("content://db/WLOG_DEF");
+		TextView txt = (TextView) findViewById(R.id.textView1);
+		txt.setText("");
+		Cursor c = dbAdapter.query(uri, null, null, null, null);
+
+		while (c.moveToNext()) {
+			for (int i = 0; i < c.getColumnCount(); i++) {
+				txt.append(c.getString(i) + " ");
+			}
+		}
+
+	}
+
+	private void setSpinner_COUNT() {
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// アイテムを追加します
+		Uri uri = Uri.parse("content://db/OUTPUT_COUNT_DEF");
+		Cursor c = dbAdapter.query(uri, null, null, null, null);
+
+		while (c.moveToNext()) {
+			for (int i = 0; i < c.getColumnCount(); i++) {
+				adapter.add(c.getString(1));
+			}
+		}
+		adapter.add("red");
+		adapter.add("green");
+		adapter.add("blue");
+		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+		// アダプターを設定します
+		spinner.setAdapter(adapter);
+	}
+
+	public void moveToList(View v) {
+		Intent i = new Intent(SKBNActivity.this, SKBNListActivity.class);
+		startActivity(i);
+	}
+
+	public void moveToSelect(View v) {
+		Intent i = new Intent(SKBNActivity.this, SelectActivity.class);
+		startActivity(i);
+	}
+}

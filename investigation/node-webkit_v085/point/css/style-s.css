@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+body {
+    width:300px;
+    margin:10px auto;  /*←上下マージン20px、左右はautoでセンター合わせに*/
+}
+header, nav, article, aside, section, footer {
+    display:block;  /*←新要素はデフォルトではinline要素なのでこの指定が必要。*/
+}
+header, nav, article, aside, section, footer {
+    border:1px solid #ccc;  /*←各ブロックに枠線をつけてわかりやすくしました。*/
+    margin:0px 0px 10px;
+    padding:20px;
+}
+header {
+    text-align:center;
+}
+nav {
+    text-align:center;
+    padding:5px;
+    }
+nav ul, nav li {
+    list-style-type:none;
+    /*display:inline;*/  /*←display:inlineでli要素を横並びに。*/
+    padding:0px 10px;
+}
+nav ul h1 {
+    display:none;  /*←display:noneで非表示にする。CSSが無効の時は見える。*/
+}
+article {
+    float:left;  /*←article（メインブロック）はfloat:leftで左寄せに。*/
+    width:260px;
+}
+aside {
+    float:left;  /*←aside（サイドバー）はfloat:leftで右寄せに。*/
+    width:260px;
+}
+footer {
+    clear:both;  /*←articleとasideのfloatを、これでクリア。*/
+    text-align: center;
+    padding: 5px;
+    font-size: 80%;
+}

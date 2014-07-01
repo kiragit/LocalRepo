@@ -1,0 +1,10 @@
+package pg;
+
+public class JISSEKI {
+	  SAKUBAN_ID
+	  USER_ID
+	  JISSEKI_DATE
+	  JISSEKI_TIME_START
+	  JISSEKI_TIME_END
+
+}

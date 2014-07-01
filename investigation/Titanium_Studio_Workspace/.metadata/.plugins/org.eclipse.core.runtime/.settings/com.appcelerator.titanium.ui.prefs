@@ -1,0 +1,14 @@
+=run
+Android\ Emulator\ Process\:ConsoleLogLevel=Info
+Device\ Log\:ConsoleLogLevel=Info
+LAST_LAUNCH_TIMESTAMP=1390139231202
+eclipse.preferences.version=1
+preference.show.console.onError=true
+preference.studio.perspective.version=103
+todo2\:launchMode=run
+todo2\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut
+todo3\:ConsoleLogLevel=Info
+todo3\:launchMode=run
+todo3\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut.015d165c52081419
+todo\:launchMode=run
+todo\:launchShortcut=org.eclipse.jdt.debug.ui.javaAppletShortcut

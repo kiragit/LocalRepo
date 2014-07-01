@@ -1,0 +1,12 @@
+package pg;
+
+import java.util.Date;
+
+public class JISSEKI {
+	  private int SAKUBAN_ID;
+	  private int USER_ID;
+	  private Date JISSEKI_DATE;
+	  private Time JISSEKI_TIME_START;
+	  private Time JISSEKI_TIME_END;
+
+}

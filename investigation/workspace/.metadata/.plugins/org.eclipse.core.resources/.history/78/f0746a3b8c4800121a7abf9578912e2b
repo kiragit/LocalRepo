@@ -1,0 +1,33 @@
+package com.example.sakuban;
+
+import java.util.Properties;
+
+public class GmailSend {
+	Properties props = new Properties();
+	props.put("mail.smtp.host", "smtp.gmail.com"); // SMTPサーバ名
+	props.put("mail.host", "smtp.gmail.com");      // 接続するホスト名
+	props.put("mail.smtp.port", "587");       // SMTPサーバポート
+	props.put("mail.smtp.auth", "true");    // smtp auth
+	props.put("mail.smtp.starttls.enable", "true");	// STTLS
+
+	// セッション
+	Session session = Session.getDefaultInstance(props);
+	session.setDebug(true);
+
+	MimeMessage msg = new MimeMessage(session);
+	try {
+		msg.setSubject("gmailでメール送信テスト(utf-8)", "utf-8");
+		msg.setFrom(new InternetAddress("Fromアドレス"));
+		msg.setSender(new InternetAddress("Senderアドレス"));
+		msg.setRecipient(Message.RecipientType.TO, new InternetAddress("送信先アドレス"));
+		msg.setText("gmail経由でgmail.com向けメール送信テスト",	"utf-8");
+
+		Transport t = session.getTransport("smtp");
+		t.connect("gmailアカウント XXXX@gmail.com", "gmailパスワード");
+		t.sendMessage(msg, msg.getAllRecipients());
+	} catch (MessagingException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}

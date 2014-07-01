@@ -1,0 +1,61 @@
+package db;
+
+import java.util.ArrayList;
+
+import com.example.sakuban.WorkLogDate;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class WLOG_DEF extends TABLE_DEFINITION{
+
+	private String TABLE_NAME = "WLOG_DEF";
+
+	private static String ID = "_id";
+	private static String YEAR = "YEAR";
+	private static String MONTH = "MONTH";
+	private static String DAY = "DAY";
+	private static String HOUR = "HOUR";
+	private static String MIN = "MIN";
+
+	private String CreateQuery = "create table "
+			+ TABLE_NAME
+			+ " ("
+			+ ID + " integer primary key autoincrement,"
+			+ YEAR +" integer not null, "
+			+ MONTH +" integer not null, "
+			+ DAY +" integer not null, "
+			+ HOUR +" integer not null, "
+			+ MIN +" integer not null"
+			+ " );";
+
+	@Override
+	public String getCreateQuery() {
+		return CreateQuery;
+	}
+
+	public static String getID() {
+		return ID;
+	}
+	public static String getYEAR() {
+		return YEAR;
+	}
+	public static String getMONTH() {
+		return MONTH;
+	}
+	public static String getDAY() {
+		return DAY;
+	}
+	public static String getHOUR() {
+		return HOUR;
+	}
+	public static String getMIN() {
+		return MIN;
+	}
+
+}

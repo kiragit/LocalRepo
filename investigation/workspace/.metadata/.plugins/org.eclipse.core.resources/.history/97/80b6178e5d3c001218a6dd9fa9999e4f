@@ -1,0 +1,6 @@
+package pg;
+
+public class SAKUBAN {
+	private int SAKUBAN_ID;
+	private int SAKUBAN_TYPE;
+}

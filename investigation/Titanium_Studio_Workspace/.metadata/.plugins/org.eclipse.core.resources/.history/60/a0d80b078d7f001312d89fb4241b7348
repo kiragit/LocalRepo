@@ -1,0 +1,5 @@
+var window  = Titanium.UI.createWindow();
+var webView = Titanium.UI.createWebView( { url: "web/index.html" });
+ 
+window.add( webView  );
+window.open();

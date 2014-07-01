@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">SAKUBAN</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_skbn">SKBNActivity</string>
+    <string name="title_activity_skbnlist">SKBNListActivity</string>
+    <string name="title_activity_skbngraph">SKBNGraphActivity</string>
+    <string name="title_activity_skbangraph2">SKBANGraph2Activity</string>
+    <string name="title_activity_output">OUTPUTActivity</string>
+    <string name="title_activity_select">SelectActivity</string>
+
+</resources>

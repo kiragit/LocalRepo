@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;strings.xml&apos; to &apos;values-ja&apos;&#x0A;- 元のプロジェクト: &apos;HanasiteKakeibo&apos;&#x0A;- 宛先要素: &apos;values-ja&apos;&#x0A;- オリジナル要素: &apos;strings.xml&apos;" description="ファイルをコピー" element1="res/values/strings.xml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1376127202903" target="/HanasiteKakeibo/res/values-ja" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,65 @@
+package db;
+
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.net.Uri;
+
+public class DbAdapter extends ContentProvider {
+
+	private DBOpenHelper helper;
+	private SQLiteDatabase db;
+
+	@Override
+	public boolean onCreate() {
+		helper = new DBOpenHelper(getContext());
+		db = helper.getWritableDatabase();
+		return (db != null);
+	}
+
+	@Override
+	public Uri insert(Uri uri, ContentValues values) {
+		String table=uri.getLastPathSegment();
+		db.insert(table, null, values);
+		return uri;
+	}
+
+	public int select(Uri uri){
+	    SQLiteDatabase db = helper.getReadableDatabase();
+	    SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+		String table=uri.getLastPathSegment();
+
+	    qb.setTables(table); //テーブル名
+	    Cursor c = qb.query(db, projection, selection, selectionArgs, null, null, null);
+	    return c;
+	}
+
+	@Override
+	public int delete(Uri arg0, String arg1, String[] arg2) {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
+	}
+
+	@Override
+	public String getType(Uri arg0) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public Cursor query(Uri uri, String[] arg1, String arg2, String[] arg3,
+			String arg4) {
+		String table=uri.getLastPathSegment();
+
+		return null;
+	}
+
+	@Override
+	public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
+	}
+
+}

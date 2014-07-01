@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TODOandLOG</title>
+        <style>
+          .completed{
+            text-decoration: line-through;
+            color:gray;
+          }
+        </style>
+    </head>
+    <body>
+
+      <h3>Tasks</h3>
+      <form id="addTask">
+        <input type="text" id="title">
+        <input type="submit" value="add">
+        <span id="error"></span>
+      </form>
+      <div id="tasks"></div>
+      <p>Tasks left : <span id="count"></span></p>
+      <p>Logs : <span id="logs"></span></p>
+
+      <script type="text/template" id="task-template">
+        <input type="checkbox" class="toggle" <%= completed ? 'checked':''%>>
+        <span class="<%=completed ? 'completed' : '' %>">
+          <%= fadddate %>
+          <%= flastModifiedTime%>
+          <%= spendTime%>
+          <%= title %>
+        </span>
+        <span class="delete">[x]</span>
+        <span class="STATUS">"<%=status? 'ON' : 'OFF' %>"</span>
+      </script>
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/json2.js"></script>
+        <script src="js/underscore.js"></script>
+        <script src="js/backbone.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
