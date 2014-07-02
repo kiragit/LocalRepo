@@ -7,12 +7,9 @@ var Datastore = require('nedb')
 function* todo() {
 	yield 1;
 	console.log("DB CLEAR");
-	//jQuery(document).ready(function () {});
 	dbclear();
 	yield 2;
 	console.log("READ FILE");
-	//document.querySelector("#setkeys").addEventListener("clicke",getKey , false);
-    //document.querySelector("graph").addEventListener("clicke",showFile , false);
 	readFiles();
 	yield 3;
 	console.log("SET KEYS");
@@ -31,14 +28,24 @@ doing.next();
 
 
 function readFiles(){
-	var rootpath='/Users/kentarokira/Documents/給与/Kyuuyo/txt/';
-	fs.readdir(rootpath,function(err,files){
-		files.filter(function(file){
-			return /.*\.txt$/.test(file); //絞り込み
-		}).forEach(function (file) {
-			readFile(rootpath +　file);
-		});
+	var rootpath;
+	jQuery(document).ready(function () {
+
+		document.querySelector("#setkeys").addEventListener("click",getKey , false);
+    	document.querySelector("#graph").addEventListener("click",showFile , false);
+
+		rootpath=document.querySelector('#income1').value;
+
+		fs.readdir(rootpath,function(err,files){
+			files.filter(function(file){
+				return /.*\.txt$/.test(file); //絞り込み
+			}).forEach(function (file) {
+				readFile(rootpath +　file);
+			});
+		});	
 	});
+
+
 }
 
 function readFile(filepath){
@@ -226,6 +233,14 @@ function drowGraph(x,y){
   			}
 		}
 		//縦軸の最大値・最小値の設定
+		if(yMin==yMax){
+			yMin=0.9*yMin
+			yMax=1.1*yMax
+		}
+		if(xMax==xMin){
+			xMax=1.1*xMax
+			xMin=0.9*xMin
+		}
 		chart_sample1["config"]["minY"]=yMin;
 		chart_sample1["config"]["maxY"]=yMax;
 		chart_sample1["config"]["minX"]=xMin;
@@ -238,11 +253,6 @@ function drowGraph(x,y){
 
 //スクレイピング
 
-var http = require('http');
-var path = require('path');
-var url = require('url');
-var phantom = require("phantom");
-var fs = require('fs');
 
 
 
