@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>app.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>app.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>index.htmlで宣言しているボタンにアクションを追加する。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>readFiles();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>持株WEBサービス 野村証券のインスタンスを生成</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> epn = <span class="hljs-keyword">new</span> EplanNomura;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>独立行政法人日本学生支援機構のインスタンスを生成</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> jasso = <span class="hljs-keyword">new</span> Jasso;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>インターネットサービス「VIEW’s NET」のインスタンスを生成</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> viewsuica = <span class="hljs-keyword">new</span> ViewSuica;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>データベースの準備</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Datastore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'nedb'</span>)
+, path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+, db = <span class="hljs-keyword">new</span> Datastore({ filename: path.join(<span class="hljs-built_in">require</span>(<span class="hljs-string">'nw.gui'</span>).App.dataPath, <span class="hljs-string">'iframe2.db'</span>) , autoload: <span class="hljs-literal">true</span>});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>対象サイト毎に画面遷移の仕方がことなるため、別々のインスタンスとして用意</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> pages = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>独立行政法人日本学生支援機構</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-string">'https://scholar-ps.sas.jasso.go.jp/mypage/login_open.do'</span>:jasso,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>持株WEBサービス 野村証券</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-string">'https://www.e-plan.nomura.co.jp/e-forum/html/index.html'</span>:epn,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>インターネットサービス「VIEW’s NET」</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-string">'https://viewsnet.jp/default.htm'</span>:viewsuica
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>yieldによる同期処理のインスタンス宣言（ボタンの押下とともに逐次で実行される）
+引数に逐次実行処理の配列を渡す。
+var doing=todo(epn.getStep());</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>index.htmlで宣言しているコンポーネントにアクションを追加する。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readFiles</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>画面の読み込みを待ち、</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	jQuery(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>iframeに指定されたurlを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> key=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>).src;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>取得したurlからデータ取得したいインスタンスを設定</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> page=pages[key];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>ボタンへアクションの追加をする。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"#setkeys"</span>).addEventListener(<span class="hljs-string">"click"</span>,page.next, <span class="hljs-literal">false</span>);
+	});
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>野村Eプラン用 モジュールパターンで実装</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">EplanNomura</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>——————-以下　プライベート　スコープ———————-
+ボタン押下とともに逐次実行されるアクション（画面遷移）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> step = [step1,step2];
+	<span class="hljs-keyword">var</span> go = todo(step);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>逐次実行される画面遷移処理１（ログイン）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step1</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>index.htmlで宣言したiframeを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>iframeから「企業コード」の入力コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"#code"</span>).value = <span class="hljs-string">"650100"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>iframeから「パスワード」の入力コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"#pass"</span>).value = <span class="hljs-string">"Hgmochi0320"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>iframeから「form」コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> nodes = iframe.contentWindow.document.getElementsByTagName(<span class="hljs-string">"form"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>submitするためのノードを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> form_node = nodes[<span class="hljs-number">0</span>];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>サブミットを実行し、画面遷移</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    form_node.submit();
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>逐次実行される画面遷移処理１（ログイン）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step2</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>index.htmlで宣言したiframeを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);
+	    <span class="hljs-keyword">var</span> nodes = iframe.contentWindow.document.querySelector(<span class="hljs-string">"#teroparea"</span>);
+	    <span class="hljs-keyword">var</span> node = nodes.getElementsByTagName(<span class="hljs-string">"a"</span>);
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>——————-以上　プライベート　スコープ———————-
+——————-以下　パブリック　スコープ———————-</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">return</span> {
+		next:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+			go.next();
+		}
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>——————-以上　パブリック　スコープ———————-</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>jassoプラン用 モジュールパターンで実装</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Jasso</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>——————-以下　プライベート　スコープ———————-
+ボタン押下とともに逐次実行されるアクション（画面遷移）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> step = [step1,step2];
+	<span class="hljs-keyword">var</span> go = todo(step);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>逐次実行される画面遷移処理１（ログイン）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step1</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>index.htmlで宣言したiframeを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>iframeから「企業コード」の入力コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"#login_open_userId"</span>).value = <span class="hljs-string">"kira1028"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>iframeから「パスワード」の入力コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"#login_open_password"</span>).value = <span class="hljs-string">"01ken014uMoka"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>iframeから「form」コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"#login_open_login_submit"</span>).click();
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>逐次実行される画面遷移処理１（ログイン）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step2</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>index.htmlで宣言したiframeを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);
+	    <span class="hljs-keyword">var</span> nodes = iframe.contentWindow.document.querySelector(<span class="hljs-string">"#contact"</span>);
+	    clickATag(iframe,<span class="hljs-string">"a"</span>,<span class="hljs-string">"https://scholar-ps.sas.jasso.go.jp/mypage/syosaiJoho_open.do"</span>);
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>——————-以上　プライベート　スコープ———————-
+——————-以下　パブリック　スコープ———————-</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">return</span> {
+		next:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+			go.next();
+		}
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>——————-以上　パブリック　スコープ———————-</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>ViewSuica用 モジュールパターンで実装</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ViewSuica</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>——————-以下　プライベート　スコープ———————-
+ボタン押下とともに逐次実行されるアクション（画面遷移）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> step = [step1,step2,step3,step4,step5,step6];
+	<span class="hljs-keyword">var</span> go = todo(step);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>明細情報を格納する配列</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> meisai = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>明細情報のカウンター</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> meisai_counter = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p>逐次実行される画面遷移処理１（ログイン）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step1</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>index.htmlで宣言したiframeを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>iframeから「企業コード」の入力コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"input[type='text']"</span>).value = <span class="hljs-string">"AASB3188"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>iframeから「パスワード」の入力コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"input[type='password']"</span>).value = <span class="hljs-string">"01ken014uMok"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>iframeから「form」コンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    iframe.contentWindow.document.querySelector(<span class="hljs-string">"input[type='image']"</span>).click();
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>逐次実行される画面遷移処理１（明細照会へログイン）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step2</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>index.htmlで宣言したiframeを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);
+	    <span class="hljs-keyword">var</span> nodes = iframe.contentWindow.document.querySelector(<span class="hljs-string">"#vucServiceMenu_IMGV0600"</span>);
+	    nodes.click();
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>逐次実行される画面遷移処理１（ログイン）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step3</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>index.htmlで宣言したiframeを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);
+	    clickATag(iframe,<span class="hljs-string">"a"</span>,<span class="hljs-string">"id=V0300_002"</span>);
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step4</span><span class="hljs-params">()</span></span>{
+	   <span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);
+	   pulldown_option = iframe.contentWindow.document.getElementById(<span class="hljs-string">"DdlClaimMonth"</span>);
+       pulldown_option[<span class="hljs-number">1</span>].selected = <span class="hljs-literal">true</span>;
+       btn = iframe.contentWindow.document.getElementById(<span class="hljs-string">"BtnList"</span>);
+       btn.click();
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step5</span><span class="hljs-params">()</span></span>{
+		<span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);
+	    clickATag(iframe,<span class="hljs-string">"a"</span>,<span class="hljs-string">"V0300_005"</span>);
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>WEB画面のテーブルから、利用明細を取得する。
+対象のテーブルはclassが”listtable2”
+テーブルの構造は、以下</p>
+<h2 id="-i-2-">明細は２行で１組となっているため、i%2の商で処理を分岐している。</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p>1列目:テーブルタイトル１
+2列目:テーブルタイトル２
+3列目:不要列（利用者名とIDを表示）
+4列目:明細１</p>
+<h2 id="5-">5列目:明細２</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step6</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p>iframeの取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p>ターゲットテーブルの取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	    <span class="hljs-keyword">var</span> tbl = iframe.contentWindow.document.querySelector(<span class="hljs-string">".listtable2"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p>テーブル行配列の取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> rows = tbl.rows;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <p>行に対するループ</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">3</span>, len=rows.length; i&lt;len; i++) {
+			<span class="hljs-keyword">var</span> cols = rows[i].cells.length;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <p>i%2の商が1のとき、つまり奇数行のときは、明細１</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span>(i%<span class="hljs-number">2</span>!=<span class="hljs-number">0</span>){</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p>明細行のカウンターを１増加させる</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				meisai_counter++;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              <p>奇数行の時に、明細を初期化する。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				meisai[meisai_counter]={};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <p>列に対するループ（明細１）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		     	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j=<span class="hljs-number">0</span>; j&lt;cols; j++) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-66">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-66">&#182;</a>
+              </div>
+              <p>セルから空白文字列を置換により削除して、連想配列へ格納。
+この時、連想配列のキーは、明細１のヘッダーであるrows[0]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		     		meisai[meisai_counter][rows[<span class="hljs-number">0</span>].cells[j].innerText.replace(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">""</span>)] = rows[i].cells[j].innerText.replace(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">""</span>);
+		     	}
+	    	} <span class="hljs-keyword">else</span>　{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-67">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
+              </div>
+              <p>列に対するループ（明細２）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		     	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j=<span class="hljs-number">0</span>; j&lt;cols; j++) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p>セルから空白文字列を置換により削除して、連想配列へ格納。
+この時、連想配列のキーは、明細２のヘッダーであるrows[1]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		     		meisai[meisai_counter][rows[<span class="hljs-number">1</span>].cells[j].innerText.replace(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">""</span>)] = rows[i].cells[j].innerText.replace(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">""</span>);
+		     	}
+	    	}
+		}
+		step7();
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-69">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <p>次へボタンがある場合の処理は、再帰処理として実装する。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step7</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
+              </div>
+              <p>iframeの取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> iframe = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myframe'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-71">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-71">&#182;</a>
+              </div>
+              <p>次へボタンのid</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> next_btn_id = <span class="hljs-string">"LnkNextBottom"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-72">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
+              </div>
+              <p>次へボタンがあるか確認</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">if</span>(iframe.contentWindow.document.getElementById(next_btn_id) != <span class="hljs-literal">null</span>){</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-73">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <p>次へボタンによる画面遷移.画面遷移後にstep7が実行される</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			clickId(iframe,next_btn_id,step6);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
+              </div>
+              <p>次へボタンが無い場合は、明細情報をデータベースへ格納する</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		}<span class="hljs-keyword">else</span>{
+			insertdata(meisai);
+			finddata();
+		}
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-75">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-75">&#182;</a>
+              </div>
+              <p>——————-以上　プライベート　スコープ———————-
+——————-以下　パブリック　スコープ———————-</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">return</span> {
+		next:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+			go.next();
+		}
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
+              <p>——————-以上　パブリック　スコープ———————-</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-77">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-77">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clickATag</span><span class="hljs-params">(iframe,tag,href)</span></span>{
+	<span class="hljs-keyword">var</span> str=<span class="hljs-string">""</span>;
+	<span class="hljs-keyword">var</span> nodes = iframe.contentWindow.document.getElementsByTagName(tag);
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> nodes) {
+		str=<span class="hljs-string">""</span>+nodes[key].href;
+		<span class="hljs-keyword">if</span>(str.indexOf(href)&gt;=<span class="hljs-number">0</span>){
+			iframe.src=str;
+		}
+	};
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-78">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clickId</span><span class="hljs-params">(iframe,id,callback)</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p>次ステップで画面遷移したあとに、callbackが実行されることで同期処理となっている。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	iframe.onload=callback;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <p>遷移先のURLを格納のため</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> str=<span class="hljs-string">""</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p>idから遷移先のurlを含むコンポーネントを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> nodes = iframe.contentWindow.document.getElementById(id);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <p>遷移先のurlを取得</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	str = nodes.href;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <p>iframeのsrcに新たにurlを設定し、画面遷移を実行</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	iframe.src=str;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <p>yieldによる同期処理の実装（ボタンの押下とともに逐次で実行される）</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">todo</span><span class="hljs-params">(step)</span> </span>{
+	<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <p>逐次実行されるイベントを可変に設定できるようforにてまわす</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; step.length; i++) {
+		step[i]();
+		<span class="hljs-keyword">yield</span> i;
+	};
+	<span class="hljs-keyword">return</span> i;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <p>データを登録する</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">insertdata</span><span class="hljs-params">(data)</span></span>{
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"--insert--"</span>);
+	db.insert(data);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <p>データを検索する</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">finddata</span><span class="hljs-params">()</span></span>{
+	db.find({},<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, docs)</span> </span>{
+		<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"--find--"</span>);
+		<span class="hljs-built_in">console</span>.log(docs);
+	});
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p>データを削除する</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dbclear</span><span class="hljs-params">()</span></span>{
+	db.remove({}, { multi: <span class="hljs-literal">true</span> }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, numRemoved)</span> </span>{
+		<span class="hljs-built_in">console</span>.log(numRemoved);
+	});
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
