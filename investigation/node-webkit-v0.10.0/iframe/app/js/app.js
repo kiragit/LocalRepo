@@ -5,6 +5,11 @@ readFiles();
 var epn = new EplanNomura;
 var jasso = new Jasso;
 var viewsuica = new ViewSuica;
+var Datastore = require('nedb')
+, path = require('path')
+, db = new Datastore({ filename: path.join(require('nw.gui').App.dataPath, 'iframe2.db') , autoload: true});
+
+finddata();
 
 var pages = {
 	'https://scholar-ps.sas.jasso.go.jp/mypage/login_open.do':jasso,
@@ -110,8 +115,13 @@ function ViewSuica(){
 	
 	//-------------以下　プライベート　スコープ---------------
 	// ボタン押下とともに逐次実行されるアクション（画面遷移）
-	var step = [step1,step2,step3,step4,step5,step6];
+	var step = [step1,step2,step3,step4,step5,step6,step7];
 	var go = todo(step);
+	// 明細情報を格納する配列
+	var meisai = {};
+	// 明細情報のカウンター
+	var meisai_counter = 0;
+
 
 	// 逐次実行される画面遷移処理１（ログイン）
 	function step1(){
@@ -137,8 +147,6 @@ function ViewSuica(){
 		// index.htmlで宣言したiframeを取得
 	    var iframe = document.getElementById('myframe');
 	    clickATag(iframe,"a","id=V0300_002");
-	    //iframe.src="https://viewsnet.jp/V0100/V0100_010.aspx?Pid=V0300_002&sv=w14";
-	    //clickATag(iframe,"a","");
 	}
 	//
 	function step4(){
@@ -158,6 +166,70 @@ function ViewSuica(){
 		var iframe = document.getElementById('myframe');
 	    clickATag(iframe,"a","HlDetail");
 	}
+	// WEB画面のテーブルから、利用明細を取得する。
+	// 対象のテーブルはclassが”listtable2”
+	// テーブルの構造は、以下
+	// 明細は２行で１組となっているため、i%2の商で処理を分岐している。
+	// ---------------------
+	// 1列目:テーブルタイトル１
+	// 2列目:テーブルタイトル２
+	// 3列目:不要列（利用者名とIDを表示）
+	// 4列目:明細１
+	// 5列目:明細２
+	// ---------------------
+	function step7(){
+		// iframeの取得
+		var iframe = document.getElementById('myframe');
+		// ターゲットテーブルの取得
+	    var tbl = iframe.contentWindow.document.querySelector(".listtable2");
+	    // テーブル行配列の取得
+		var rows = tbl.rows;
+		// 行に対するループ
+		for (var i=3, len=rows.length; i<len; i++) {
+			var cols = rows[i].cells.length;
+			// i%2の商が1のとき、つまり奇数行のときは、明細１
+			if(i%2!=0){
+				// 明細行のカウンターを１増加させる
+				meisai_counter++;
+				// 奇数行の時に、明細を初期化する。
+				meisai[meisai_counter]={};
+				// 列に対するループ（明細１）
+		     	for (var j=0; j<cols; j++) {
+		     		// セルから空白文字列を置換により削除して、連想配列へ格納。
+		     		// この時、連想配列のキーは、明細１のヘッダーであるrows[0]
+		     		meisai[meisai_counter][rows[0].cells[j].innerText.replace(/\s+/g, "")] = rows[i].cells[j].innerText.replace(/\s+/g, "");
+		     	}
+	    	} else　{
+				// 列に対するループ（明細２）
+		     	for (var j=0; j<cols; j++) {
+		     		// セルから空白文字列を置換により削除して、連想配列へ格納。
+		     		// この時、連想配列のキーは、明細２のヘッダーであるrows[1]
+		     		meisai[meisai_counter][rows[1].cells[j].innerText.replace(/\s+/g, "")] = rows[i].cells[j].innerText.replace(/\s+/g, "");
+		     	}
+	    	}
+		}
+		step8();
+	}
+
+	// 次へボタンがある場合の処理は、再帰処理として実装する。
+	function step8(){
+		// iframeの取得
+		var iframe = document.getElementById('myframe');
+		// 次へボタンのid
+		var next_btn_id = "LnkNextBottom";
+		// 次へボタンがあるか確認
+		if(iframe.contentWindow.document.getElementById(next_btn_id) != null){
+			iframe.onload=step7;
+			// 次へボタンによる画面遷移
+			clickId(iframe,next_btn_id);
+			//jQuery(document.getElementById('myframe').contentWindow.document).ready(step7());
+			//setTimeout(step7(),3000);
+				
+		}else{
+			insertdata(meisai);
+			finddata();
+		}
+	}
 	//-------------以上　プライベート　スコープ---------------
 	//-------------以下　パブリック　スコープ---------------
 	return {
@@ -174,20 +246,42 @@ function clickATag(iframe,tag,href){
 	var nodes = iframe.contentWindow.document.getElementsByTagName(tag);
 	for (var key in nodes) {
 		str=""+nodes[key].href;
-		console.log("click a tag "+str);
 		if(str.indexOf(href)>=0){
 			iframe.src=str;
 		}
 	};
 }
 
+function clickId(iframe,id){
+	var str="";
+	var nodes = iframe.contentWindow.document.getElementById(id);
+	str = nodes.href;
+	iframe.src=str;
+}
 // yieldによる同期処理の実装（ボタンの押下とともに逐次で実行される）
 function* todo(step) {
 	var i=0;
 	//逐次実行されるイベントを可変に設定できるようforにてまわす
 	for (i = 0; i < step.length; i++) {
-		yield i;
 		step[i]();
+		yield i;
 	};
 	return i;
+}
+
+function insertdata(data){
+	db.insert(data);
+}
+
+function finddata(){
+	db.find({},function (err, docs) {
+		console.log("show keys");
+		console.log(docs);
+	});
+}
+
+function dbclear(){
+	db.remove({}, { multi: true }, function (err, numRemoved) {
+		console.log(numRemoved);
+	});
 }
