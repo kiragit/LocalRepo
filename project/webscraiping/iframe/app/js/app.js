@@ -27,15 +27,25 @@ var pages = {
 // var doing=todo(epn.getStep());
 
 // index.htmlで宣言しているコンポーネントにアクションを追加する。
+// @ToDo
+// 現状では、ボタンのidとiframeのidを関連させることで、ボタンに登録するiframeインスタンスを取得しているが、
+// 本来であれば、<section>内のボタンとiframeを関連づけるべきである（構造により関連付けをするべき）
 function readFiles(){
 	//画面の読み込みを待ち、
 	jQuery(document).ready(function () {
-		// iframeに指定されたurlを取得
-		var key=document.getElementById('myframe').src;
-		// 取得したurlからデータ取得したいインスタンスを設定
-		var page=pages[key];
-		//ボタンへアクションの追加をする。
-		document.querySelector("#setkeys").addEventListener("click",page.next, false);
+		// 画面のボタンを取得
+		all_btn = document.querySelectorAll("input[type='button']");
+		// 全てのボタンにアクションを追加
+		for (var i = 0; i < all_btn.length; i++) {
+			// iframeのid
+			var iframe_name=all_btn[i].id.replace(/_btn$/, "");
+			// iframeに指定されたurlを取得
+			var key=document.getElementById(iframe_name).src;
+			// 取得したurlからデータ取得したいインスタンスを設定
+			var page=pages[key];
+			//ボタンへアクションの追加をする。
+			all_btn[i].addEventListener("click",page.next, false);
+		};
 	});
 }
 
@@ -47,15 +57,19 @@ function EplanNomura(){
 	var step = [step1,step2];
 	// 逐次実行用にyieldを実装したインスタンスを生成
 	var go = todo(step);
+	// iframe
+	var iframe;
+	// iframeのid
+	var iframe_name = "myframe_epn";
 
 	// 逐次実行される画面遷移処理１（ログイン）
 	function step1(){
 		// index.htmlで宣言したiframeを取得
-	    var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 	    // iframeから「企業コード」の入力コンポーネントを取得
-	    iframe.contentWindow.document.querySelector("#code").value = "";
+	    iframe.contentWindow.document.querySelector("#code").value = "650100";
 	    // iframeから「パスワード」の入力コンポーネントを取得
-	    iframe.contentWindow.document.querySelector("#pass").value = "";
+	    iframe.contentWindow.document.querySelector("#pass").value = "Hgmochi0320";
 	    // iframeから「form」コンポーネントを取得
 	    var nodes = iframe.contentWindow.document.getElementsByTagName("form");
 	    // submitするためのノードを取得
@@ -67,7 +81,7 @@ function EplanNomura(){
 	// 逐次実行される画面遷移処理１（ログイン）
 	function step2(){
 		// index.htmlで宣言したiframeを取得
-	    var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 	    var nodes = iframe.contentWindow.document.querySelector("#teroparea");
 	    var node = nodes.getElementsByTagName("a");
 	}
@@ -89,15 +103,19 @@ function Jasso(){
 	var step = [step1,step2];
 	// 逐次実行用にyieldを実装したインスタンスを生成
 	var go = todo(step);
+	// iframe
+	var iframe;
+	// iframeのid
+	var iframe_name = "myframe_jasso";
 
 	// 逐次実行される画面遷移処理１（ログイン）
 	function step1(){
 		// index.htmlで宣言したiframeを取得
-	    var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 	    // iframeから「企業コード」の入力コンポーネントを取得
-	    iframe.contentWindow.document.querySelector("#login_open_userId").value = "";
+	    iframe.contentWindow.document.querySelector("#login_open_userId").value = "kira1028";
 	    // iframeから「パスワード」の入力コンポーネントを取得
-	    iframe.contentWindow.document.querySelector("#login_open_password").value = "";
+	    iframe.contentWindow.document.querySelector("#login_open_password").value = "01ken014uMoka";
 	    // iframeから「form」コンポーネントを取得
 	    iframe.contentWindow.document.querySelector("#login_open_login_submit").click();
 	}
@@ -105,9 +123,9 @@ function Jasso(){
 	// 逐次実行される画面遷移処理１（ログイン）
 	function step2(){
 		// index.htmlで宣言したiframeを取得
-	    var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 	    var nodes = iframe.contentWindow.document.querySelector("#contact");
-	    clickATag(iframe,"a","https://scholar-ps.sas.jasso.go.jp/mypage/syosaiJoho_open.do");
+	    clickHrefIfFound(iframe,"a","syosaiJoho_open.do");
 	}
 	//-------------以上　プライベート　スコープ---------------
 	//-------------以下　パブリック　スコープ---------------
@@ -131,15 +149,19 @@ function ViewSuica(){
 	var meisai = {};
 	// 明細情報のカウンター
 	var meisai_counter = 0;
+	// iframe
+	var iframe;
+	// iframeのid
+	var iframe_name = "myframe_viewsuica";
 
 	// 逐次実行される画面遷移処理１（ログイン）
 	function step1(){
 		// index.htmlで宣言したiframeを取得
-	    var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 	    // iframeから「企業コード」の入力コンポーネントを取得
-	    iframe.contentWindow.document.querySelector("input[type='text']").value = "";
+	    iframe.contentWindow.document.querySelector("input[type='text']").value = "AASB3188";
 	    // iframeから「パスワード」の入力コンポーネントを取得
-	    iframe.contentWindow.document.querySelector("input[type='password']").value = "";
+	    iframe.contentWindow.document.querySelector("input[type='password']").value = "01ken014uMok";
 	    // iframeから「form」コンポーネントを取得
 	    iframe.contentWindow.document.querySelector("input[type='image']").click();
 	}
@@ -147,29 +169,32 @@ function ViewSuica(){
 	// 逐次実行される画面遷移処理２（明細照会へ）
 	function step2(){
 		// index.htmlで宣言したiframeを取得
-	    var iframe = document.getElementById('myframe');
-	    var nodes = iframe.contentWindow.document.querySelector("#vucServiceMenu_IMGV0600");
-	    nodes.click();
+	    iframe = getIframe(iframe_name);
+	    // ボタンを押下
+	    iframe.contentWindow.document.querySelector("#vucServiceMenu_IMGV0600").click();
 	}
 	// 逐次実行される画面遷移処理３（ログイン）
 	function step3(){
 		// index.htmlで宣言したiframeを取得
-	    var iframe = document.getElementById('myframe');
-	    clickATag(iframe,"a","id=V0300_002");
+	    iframe = getIframe(iframe_name);
+	    // タグを探して、hrefに記載されたurlに遷移
+	    moveHrefByTagsIfFound(iframe,"a","id=V0300_002");
 	}
 	// 逐次実行される画面遷移処理４
 	function step4(){
-	   var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 	   pulldown_option = iframe.contentWindow.document.getElementById("DdlClaimMonth");
        pulldown_option[1].selected = true;
        btn = iframe.contentWindow.document.getElementById("BtnList");
        btn.click();
 	}
-	//
+	// 逐次実行される画面遷移処理５
 	function step5(){
-		var iframe = document.getElementById('myframe');
-	    clickATag(iframe,"a","V0300_005");
+	    iframe = getIframe(iframe_name);
+	    // タグを探して、hrefに記載されたurlに遷移
+	    moveHrefByTagsIfFound(iframe,"a","V0300_005");
 	}
+	// 逐次実行される画面遷移処理６
 	// WEB画面のテーブルから、利用明細を取得する。
 	// 対象のテーブルはclassが”listtable2”
 	// テーブルの構造は、以下
@@ -183,7 +208,7 @@ function ViewSuica(){
 	// ---------------------
 	function step6(){
 		// iframeの取得
-		var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 		// ターゲットテーブルの取得
 	    var tbl = iframe.contentWindow.document.querySelector(".listtable2");
 	    // テーブル行配列の取得
@@ -218,13 +243,14 @@ function ViewSuica(){
 	// 次へボタンがある場合の処理は、再帰処理として実装する。
 	function step7(){
 		// iframeの取得
-		var iframe = document.getElementById('myframe');
+	    //var iframe = document.getElementById('myframe');
+	    iframe = getIframe(iframe_name);
 		// 次へボタンのid
 		var next_btn_id = "LnkNextBottom";
 		// 次へボタンがあるか確認
 		if(iframe.contentWindow.document.getElementById(next_btn_id) != null){
 			// 次へボタンによる画面遷移.画面遷移後にstep7が実行される
-			clickId(iframe,next_btn_id,step6);
+			moveHrefAndExecCallback(iframe,next_btn_id,step6);
 		//次へボタンが無い場合は、明細情報をデータベースへ格納する
 		}else{
 			insertdata(meisai);
@@ -241,8 +267,19 @@ function ViewSuica(){
 	//-------------以上　パブリック　スコープ---------------
 };
 
-// 
-function clickATag(iframe,tag,href){
+//
+function clickHrefIfFound(iframe,tag,href){
+	var str="";
+	var nodes = iframe.contentWindow.document.getElementsByTagName(tag);
+	for (var key in nodes) {
+		str=""+nodes[key].href;
+		if(str.indexOf(href)>=0){
+			nodes[key].click();
+		}
+	};
+}
+// iframe内の指定したタグを走査し、指定した文字列を含むhrefへ画面遷移する。
+function moveHrefByTagsIfFound(iframe,tag,href){
 	var str="";
 	var nodes = iframe.contentWindow.document.getElementsByTagName(tag);
 	for (var key in nodes) {
@@ -252,8 +289,9 @@ function clickATag(iframe,tag,href){
 		}
 	};
 }
-//
-function clickId(iframe,id,callback){
+// iframe内のタグをidで検索し、そこに含まれるhrefへ画面遷移をする。
+// 画面遷移後に、callback関数を実行する。
+function moveHrefAndExecCallback(iframe,id,callback){
 	// 次ステップで画面遷移したあとに、callbackが実行されることで同期処理となっている。
 	iframe.onload=callback;
 	// 遷移先のURLを格納のため
@@ -274,6 +312,11 @@ function* todo(step) {
 		yield i;
 	};
 	return i;
+}
+
+// iframe名からiframeオブジェクトを返す。.
+function getIframe(iframe_name){
+	return document.getElementById(iframe_name);
 }
 
 // データを登録する
