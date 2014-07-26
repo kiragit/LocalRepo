@@ -1,0 +1,8 @@
+{
+  "name": "nw-demo",
+  "main": "index.html",
+  "js-flags": "--harmony",
+  "version": "0.0.0",
+  "author": "Kentaro.Kira",
+  "license": "ISC"
+}
