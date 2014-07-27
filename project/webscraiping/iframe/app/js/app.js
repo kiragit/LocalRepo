@@ -24,8 +24,6 @@ var pages = {
 
 // yieldによる同期処理のインスタンス宣言（ボタンの押下とともに逐次で実行される）
 // 引数に逐次実行処理の配列を渡す。
-// var doing=todo(epn.getStep());
-
 // index.htmlで宣言しているコンポーネントにアクションを追加する。
 // @ToDo
 // 現状では、ボタンのidとiframeのidを関連させることで、ボタンに登録するiframeインスタンスを取得しているが、
@@ -37,14 +35,25 @@ function readFiles(){
 		all_btn = document.querySelectorAll("input[type='button']");
 		// 全てのボタンにアクションを追加
 		for (var i = 0; i < all_btn.length; i++) {
-			// iframeのid
-			var iframe_name=all_btn[i].id.replace(/_btn$/, "");
-			// iframeに指定されたurlを取得
-			var key=document.getElementById(iframe_name).src;
-			// 取得したurlからデータ取得したいインスタンスを設定
-			var page=pages[key];
-			//ボタンへアクションの追加をする。
-			all_btn[i].addEventListener("click",page.next, false);
+			if(all_btn[i].className=="next"){
+				// iframeのid
+				var iframe_name=all_btn[i].id.replace(/_btn$/, "");
+				// iframeに指定されたurlを取得
+				var key=document.getElementById(iframe_name).src;
+				// 取得したurlからデータ取得したいインスタンスを設定
+				var page=pages[key];
+				//ボタンへアクションの追加をする。
+				all_btn[i].addEventListener("click",page.next, false);
+			}else if(all_btn[i].className=="auto"){
+				// iframeのid
+				var iframe_name=all_btn[i].id.replace(/_btn$/, "");
+				// iframeに指定されたurlを取得
+				var key=document.getElementById(iframe_name).src;
+				// 取得したurlからデータ取得したいインスタンスを設定
+				var page=pages[key];
+				//ボタンへアクションの追加をする。
+				all_btn[i].addEventListener("click",page.auto, false);	
+			}
 		};
 	});
 }
@@ -54,7 +63,7 @@ function EplanNomura(){
 	
 	//-------------以下　プライベート　スコープ---------------
 	// ボタン押下とともに逐次実行されるアクション（画面遷移）
-	var step = [step1,step2];
+	var step = [step1,step2,step3];
 	// 逐次実行用にyieldを実装したインスタンスを生成
 	var go = todo(step);
 	// iframe
@@ -78,18 +87,32 @@ function EplanNomura(){
 	    form_node.submit();
 	}
 
-	// 逐次実行される画面遷移処理１（ログイン）
+	// 逐次実行される画面遷移処理２（残高照会画面へ遷移）
 	function step2(){
 		// index.htmlで宣言したiframeを取得
 	    iframe = getIframe(iframe_name);
-	    var nodes = iframe.contentWindow.document.querySelector("#teroparea");
-	    var node = nodes.getElementsByTagName("a");
+	    moveHrefByTagsIfFound(iframe,"iframe","balancecheck2.html");
+	}
+
+	// 逐次実行される画面遷移処理３（ログイン）
+	function step3(){
+		// index.htmlで宣言したiframeを取得
+	    iframe = getIframe(iframe_name);
+	    console.log(iframe);
+	    moveHrefByTagsIfFound(iframe,"iframe","balancecheck2.html");
 	}
 	//-------------以上　プライベート　スコープ---------------
 	//-------------以下　パブリック　スコープ---------------
 	return {
+		count:0,
 		next:function(){
 			go.next();
+		},
+		auto:function(){
+			iframe = getIframe(iframe_name);
+			iframe.onload=arguments.callee;
+			go.next();
+			this.count++;
 		}
 	};
 	//-------------以上　パブリック　スコープ---------------
@@ -130,8 +153,15 @@ function Jasso(){
 	//-------------以上　プライベート　スコープ---------------
 	//-------------以下　パブリック　スコープ---------------
 	return {
+		count:0,
 		next:function(){
 			go.next();
+		},
+		auto:function(){
+			iframe = getIframe(iframe_name);
+			iframe.onload=arguments.callee;
+			go.next();
+			this.count++;
 		}
 	};
 	//-------------以上　パブリック　スコープ---------------
@@ -249,7 +279,7 @@ function ViewSuica(){
 		var next_btn_id = "LnkNextBottom";
 		// 次へボタンがあるか確認
 		if(iframe.contentWindow.document.getElementById(next_btn_id) != null){
-			// 次へボタンによる画面遷移.画面遷移後にstep7が実行される
+			// 次へボタンによる画面遷移.画面遷移後にstepが実行される
 			moveHrefAndExecCallback(iframe,next_btn_id,step6);
 		//次へボタンが無い場合は、明細情報をデータベースへ格納する
 		}else{
@@ -262,12 +292,21 @@ function ViewSuica(){
 	return {
 		next:function(){
 			go.next();
+		},
+		auto:function(){
+			iframe = getIframe(iframe_name);
+			iframe.onload=arguments.callee;
+			go.next();
+			this.count++;
 		}
 	};
 	//-------------以上　パブリック　スコープ---------------
 };
 
-//
+// iframe内の指定したタグを走査し、hrefに指定した文字列を含むコンポーネントをクリックする。
+// 前提条件として、コンポーネントはclickイベントが設定されている必要がある。
+// クリックイベントが設定されていない場合は、「iframe.src=href]を実行する必要があるため、
+// 別途用意した共通関数を用いること
 function clickHrefIfFound(iframe,tag,href){
 	var str="";
 	var nodes = iframe.contentWindow.document.getElementsByTagName(tag);
@@ -285,6 +324,17 @@ function moveHrefByTagsIfFound(iframe,tag,href){
 	for (var key in nodes) {
 		str=""+nodes[key].href;
 		if(str.indexOf(href)>=0){
+			iframe.src=str;
+		}
+	};
+}
+// iframe内の指定したタグを走査し、指定した文字列を含むsrcへ画面遷移する。
+function moveHrefByTagsIfFound(iframe,tag,src){
+	var str="";
+	var nodes = iframe.contentWindow.document.getElementsByTagName(tag);
+	for (var key in nodes) {
+		str=""+nodes[key].src;
+		if(str.indexOf(src)>=0){
 			iframe.src=str;
 		}
 	};
