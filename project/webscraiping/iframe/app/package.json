@@ -4,5 +4,8 @@
   "js-flags": "--harmony",
   "version": "0.0.0",
   "author": "Kentaro.Kira",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mongodb": "^1.4.7"
+  }
 }

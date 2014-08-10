@@ -10,6 +10,8 @@
     "gulp-docco": "^0.0.4"
   },
   "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-tsc": "^0.9.2",
     "gulp-util": "^3.0.0",
     "node-webkit-builder": "0.0.3"
   },
